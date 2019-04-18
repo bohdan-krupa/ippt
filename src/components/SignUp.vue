@@ -6,7 +6,7 @@
 		<input v-model="password" type="password">
 		<p>Password once again {{ password2 }}</p>
 		<input v-model="password2" type="password">
-    <div class="sign-up-btn">Sign up</div>
+    <div @click="onSignUp" class="sign-up-btn">Sign up</div>
 	</div>
 </template>
 
@@ -17,6 +17,20 @@
         username: null,
         password: null,
         password2: null
+      }
+    },
+    watch: {
+      username: () => {
+        if (this.username.length > 5) {
+          alert()
+        }
+      }
+    },
+    methods: {
+      onSignUp() {
+        if (this.username.length > 5) {
+          alert()
+        }
       }
     }
   }
