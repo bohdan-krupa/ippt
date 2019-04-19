@@ -10,8 +10,9 @@
     display: block
     width: 140px
     height: 40px
-    margin-bottom: 15px
+    margin: 0 auto 15px auto
     background-color: lightblue
+    color: #333
     text-decoration: none
     text-align: center
     line-height: 40px
