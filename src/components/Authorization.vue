@@ -5,6 +5,10 @@
   </div>
 </template>
 
+<script>
+
+</script>
+
 <style lang="sass">
   a
     display: block

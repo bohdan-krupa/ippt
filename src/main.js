@@ -4,6 +4,17 @@ import App from './App.vue'
 import Authorization from '../src/components/Authorization.vue'
 import SignIn from '../src/components/SignIn.vue'
 import SignUp from '../src/components/SignUp.vue'
+import firebase from 'firebase'
+
+let config = {
+  apiKey: "AIzaSyC4U1gX8DoZGmywRO2KP4iZDtmeVuGWZ28",
+  authDomain: "machines-5bc18.firebaseapp.com",
+  databaseURL: "https://machines-5bc18.firebaseio.com",
+  projectId: "machines-5bc18",
+  storageBucket: "machines-5bc18.appspot.com",
+  messagingSenderId: "1081596877438"
+}
+firebase.initializeApp(config)
 
 
 Vue.config.productionTip = false

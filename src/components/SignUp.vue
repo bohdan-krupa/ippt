@@ -1,8 +1,8 @@
 <template>
 	<div class="container">
     <div v-if="showing == 'inputs'">
-      <p>Username</p>
-      <input v-model="username" :class="{ green: isGood.username }" type="text">
+      <p>Email</p>
+      <input v-model="email" :class="{ green: isGood.email }" type="text">
       <p>Password</p>
       <input v-model="password" :class="{ green: isGood.password }" type="password">
       <p>Password once again</p>
@@ -20,24 +20,26 @@
 </template>
 
 <script>
+  import firebase from 'firebase'
+
   export default {
     data() {
       return {
         showing: 'inputs',
-        username: null,
+        email: null,
         password: null,
         password2: null,
         isGood: {
-          username: false,
+          email: false,
           password: false,
           password2: false
         }
       }
     },
     watch: {
-      username: function(val) {
-        let regExp = /^[a-zA-Z0-9]{6,}$/
-        this.isGood.username = regExp.test(val) ? 1 : 0 
+      email: function(val) {
+        let regExp = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/
+        this.isGood.email = regExp.test(val) ? 1 : 0 
       },
       password: function(val) {
         let regExp = /^(?=.*[0-9]+.*)(?=.*[a-zA-Z]+.*)[0-9a-zA-Z]{6,}$/
@@ -50,9 +52,14 @@
     },
     methods: {
       onSignUp() {
-        if (this.isGood.username && this.isGood.password && this.isGood.password2) {
-          this.showing = 'success'
-          // firebase.auth().createUserWithEmailAndPassword(email, password)
+        if (this.isGood.email && this.isGood.password && this.isGood.password2) {
+          this.showing = 'loading'
+          firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(user => {
+            this.showing = 'success'
+          },
+          error => {
+            throw error
+          })
         }
       }
     }
