@@ -1,18 +1,18 @@
 <template>
 	<div class="container">
-    <div v-if="showing == 'inputs'">
+    <div v-if="showing == 1">
       <p>Email</p>
       <input v-model="email" :class="{ green: isGood.email }" type="text">
       <p>Password</p>
       <input v-model="password" :class="{ green: isGood.password }" type="password">
       <p>Password once again</p>
       <input v-model="password2" :class="{ green: isGood.password2 }" type="password">
-      <div @click="onSignUp" class="sign-up-btn">Sign up</div>
+      <div @click="onSignUp" class="sign-btn">Sign up</div>
     </div>
-    <div v-if="showing == 'loading'">
+    <div v-if="showing == 2">
       <h3>Loading...</h3>
     </div>
-    <div v-if="showing == 'success'">
+    <div v-if="showing == 3">
       <h3>You are successfully registered</h3>
       <router-link to="/sign-in">Sign in</router-link>
     </div>
@@ -22,16 +22,22 @@
 <script>
   import firebase from 'firebase'
 
+  let mode = {
+    inputs:  1,
+    loading: 2,
+    success: 3
+  }
+
   export default {
     data() {
       return {
-        showing: 'inputs',
-        email: null,
-        password: null,
+        showing:   mode.inputs,
+        email:     null,
+        password:  null,
         password2: null,
         isGood: {
-          email: false,
-          password: false,
+          email:     false,
+          password:  false,
           password2: false
         }
       }
@@ -53,12 +59,14 @@
     methods: {
       onSignUp() {
         if (this.isGood.email && this.isGood.password && this.isGood.password2) {
-          this.showing = 'loading'
-          firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(user => {
-            this.showing = 'success'
+          this.showing = mode.loading
+
+          firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(() => {
+            this.showing = mode.success
           },
           error => {
-            throw error
+            alert(error.message)
+            this.showing = mode.inputs
           })
         }
       }
@@ -66,27 +74,7 @@
   }
 </script>
 
-<style lang="sass">
-  input
-    border: 1px solid #333
-    outline: none
-    padding: 10px
-  
-  .sign-up-btn
-    position: relative
-    left: 50%
-    margin-top: 25px
-    transform: translateX(-50%)
-    width: 140px
-    height: 40px
-    margin-bottom: 15px
-    background-color: lightblue
-    text-decoration: none
-    text-align: center
-    line-height: 40px
-    border-radius: 20px
-    cursor: pointer
-
+<style lang="sass">  
   .green
     border-color: green
 </style>

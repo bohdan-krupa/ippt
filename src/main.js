@@ -4,6 +4,7 @@ import App from './App.vue'
 import Authorization from '../src/components/Authorization.vue'
 import SignIn from '../src/components/SignIn.vue'
 import SignUp from '../src/components/SignUp.vue'
+import Client from '../src/components/Client.vue'
 import firebase from 'firebase'
 
 let config = {
@@ -23,7 +24,8 @@ Vue.use(VueRouter)
 const routes = [
   { path: '/', component: Authorization },
   { path: '/sign-in', component: SignIn },
-  { path: '/sign-up', component: SignUp }
+  { path: '/sign-up', component: SignUp },
+  { path: '/client', component: Client }
 ]
 
 const router = new VueRouter({
