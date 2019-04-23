@@ -104,6 +104,11 @@
       onMyTasks() {
         this.tasked = true
 
+        this.$notify({
+          title: 'Loading...',
+          type: 'success'
+        })
+
         firebase.database().ref('users/' + this.uId).once('value', snap => {
           this.getType.country = snap.val().country
           this.getType.year = snap.val().year
