@@ -1,6 +1,8 @@
 <template>
-  <div class="container">
-    <h3>{{ name }}</h3>
+  <div>
+    <div class="container">
+      <h3>{{ name }}</h3>
+    </div>
     <div @click="onSignOut" class="sign-btn">Sign out</div>
   </div>
 </template>
@@ -46,9 +48,9 @@
 
 <style lang="sass">
   .sign-btn
-    position: absolute
-    width: 100px
-    height: 60px
-    top: 0
+    // position: absolute
+    // width: 100px
+    // height: 60px
+    bottom: 0
     // bottom: 0
 </style>
