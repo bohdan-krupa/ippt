@@ -35,7 +35,7 @@
     created() {
       firebase.auth().onAuthStateChanged(user => {
         if (user) {
-          this.name = user.email
+          this.name = user.uid
         } else {
           this.$router.replace('/')
         }
@@ -65,6 +65,11 @@
         if (this.machineType.country && this.machineType.year && this.machineType.mark) {
           this.$notify({
             title: "YEEESSSSSS"
+          })
+          firebase.database().ref('users/' + userId).set({
+            country: this.machineType.country,
+            year: this.machineType.year
+            mark: this.machineType.mark
           })
         } else {
           this.$notify({
