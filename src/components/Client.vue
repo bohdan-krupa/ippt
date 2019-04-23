@@ -1,7 +1,10 @@
 <template>
   <div>
     <div class="container">
-      <div v-if="!asked" @click="onAsk" class="sign-btn">Ask for repair</div>
+      <div v-if="!asked">
+        <div @click="onAsk" class="sign-btn">Ask for repair</div>
+        <div @click="onMyTasks" class="sign-btn">My tasks</div>
+      </div>
       <div v-else>
         <p>Країна-виробник</p>
         <input v-model="machineType.country" type="text">
