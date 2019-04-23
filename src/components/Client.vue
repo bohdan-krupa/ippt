@@ -2,7 +2,7 @@
   <div>
     <div class="container">
       <div v-if="!asked" @click="onAsk" class="sign-btn">Ask for repair</div>
-      <div v-else>
+      <div v-if="asked && !loading">
         <p>Країна-виробник</p>
         <input v-model="machineType.country" type="text">
         <p>Рік випуску</p>
@@ -10,6 +10,11 @@
         <p>Марка</p>
         <input v-model="machineType.mark" type="text">
         <div @click="onDone" class="sign-btn">Готово</div>
+      </div>
+      <div v-if="loading">
+        <div v-if="loading">
+          <h3>Loading...</h3>
+        </div>
       </div>
     </div>
     <div @click="onSignOut" class="sign-out-btn">Sign out</div>
@@ -22,19 +27,20 @@
   export default {
     data() {
       return {
-        name:  null,
-        asked: false,
+        asked:   false,
+        loading: false
+        uId:     null,
         machineType: {
           country: null,
-          year: null,
-          mark: null
+          year:    null,
+          mark:    null
         }
       }
     },
     created() {
       firebase.auth().onAuthStateChanged(user => {
         if (user) {
-          this.name = user.uid
+          this.uId = user.uid
         } else {
           this.$router.replace('/')
         }
@@ -62,10 +68,9 @@
       },
       onDone() {
         if (this.machineType.country && this.machineType.year && this.machineType.mark) {
-          this.$notify({
-            title: "YEEESSSSSS"
-          })
-          firebase.database().ref('users/' + this.name).set({
+          this.loading = true
+          
+          firebase.database().ref('users/' + this.uId).set({
             country: this.machineType.country,
             year: this.machineType.year,
             mark: this.machineType.mark
