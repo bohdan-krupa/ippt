@@ -66,6 +66,11 @@
           this.$notify({
             title: "YEEESSSSSS"
           })
+        } else {
+          this.$notify({
+            title: 'Недостатньо даних',
+            type: 'warn'
+          })
         }
       }
     }
