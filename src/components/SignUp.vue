@@ -1,6 +1,6 @@
 <template>
 	<div class="container">
-    <div v-if="!loading">
+    <div v-if="!load">
       <p>Email</p>
       <input v-model="email" :class="{ green: isGood.email }" type="text">
       <p>Password</p>
