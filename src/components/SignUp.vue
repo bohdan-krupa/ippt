@@ -48,7 +48,7 @@
     },
     methods: {
       onSignUp() {
-        if (this.isGood.email && !this.isGood.password && !this.isGood.password2) {
+        if (this.isGood.email && this.isGood.password && this.isGood.password2) {
           this.loading = true
 
           firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(() => {

@@ -26,7 +26,7 @@
               title: 'You are logged in',
               type: 'success'
             })
-            this.$router.push('/client')
+            this.$router.replace('/client')
           },
           error => {
             this.$notify({

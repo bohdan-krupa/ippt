@@ -19,7 +19,7 @@
         if (user) {
           this.name = user.email
         } else {
-          this.$router.push('/')
+          this.$router.replace('/')
         }
       })
     },
