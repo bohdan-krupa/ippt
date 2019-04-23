@@ -66,14 +66,14 @@
           this.$notify({
             title: "YEEESSSSSS"
           })
-          firebase.database().ref('users/' + userId).set({
+          firebase.database().ref('users/' + this.name).set({
             country: this.machineType.country,
-            year: this.machineType.year
+            year: this.machineType.year,
             mark: this.machineType.mark
           })
         } else {
           this.$notify({
-            title: 'Недостатньо даних',
+            title: 'Невірні дані',
             type: 'warn'
           })
         }
