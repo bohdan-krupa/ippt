@@ -10,22 +10,7 @@
         <input v-model="machineType.year" type="number" min="1980">
         <p>Марка</p>
         <input v-model="machineType.mark" type="text">
-<!--         <select>
-          <option>Деревообробний</option>
-          <option>Каменеобробний</option>
-          <option>Металорізальний</option>
-          <option>Ткацький</option>
-          <option>Друкарський</option>
-          <option>Свердлильний</option>
-          <option>Токарний</option>
-          <option>Фрезерний</option>
-          <option>Шліфувальний</option>
-          <option>Стругальний</option>
-          <option>Довбальний</option>
-        </select> -->
-        <!-- <p>Password</p>
-        <p>Password once again</p>
-        <input v-model="password2" :class="{ green: isGood.password2 }" type="password"> -->
+        <div @click="onDone" class="sign-btn">Готово</div>
       </div>
     </div>
     <div @click="onSignOut" class="sign-out-btn">Sign out</div>
@@ -75,6 +60,13 @@
       },
       onAsk() {
         this.asked = true
+      },
+      onDone() {
+        if (this.machineType.country && this.machineType.year && this.machineType.mark) {
+          this.$notify({
+            title: "YEEESSSSSS"
+          })
+        }
       }
     }
   }
