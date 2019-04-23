@@ -1,7 +1,6 @@
 <template>
   <div>
     <div class="container">
-      <h3>{{ name }}</h3>
       <div v-if="!asked" @click="onAsk" class="sign-btn">Ask for repair</div>
       <div v-else>
         <p>Країна-виробник</p>
