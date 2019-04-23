@@ -4,7 +4,12 @@
       <h3>{{ name }}</h3>
       <div v-if="!asked" @click="onAsk" class="sign-btn">Ask for repair</div>
       <div v-else>
-        <p>sdfsdf</p>
+        <p>Email</p>
+        <input v-model="email" :class="{ green: isGood.email }" type="text">
+        <p>Password</p>
+        <input v-model="password" :class="{ green: isGood.password }" type="password">
+        <p>Password once again</p>
+        <input v-model="password2" :class="{ green: isGood.password2 }" type="password">
       </div>
     </div>
     <div @click="onSignOut" class="sign-out-btn">Sign out</div>
