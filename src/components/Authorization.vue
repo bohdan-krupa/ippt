@@ -23,18 +23,18 @@
     outline: none
     padding: 10px
 
-  .sign-btn
-    position: relative
-    left: 50%
-    margin-top: 25px
-    transform: translateX(-50%)
-    width: 140px
-    height: 40px
-    margin-bottom: 15px
-    background-color: lightblue
-    text-decoration: none
-    text-align: center
-    line-height: 40px
-    border-radius: 20px
-    cursor: pointer
+  // .sign-btn
+  //   position: relative
+  //   left: 50%
+  //   margin-top: 25px
+  //   transform: translateX(-50%)
+  //   width: 140px
+  //   height: 40px
+  //   margin-bottom: 15px
+  //   background-color: lightblue
+  //   text-decoration: none
+  //   text-align: center
+  //   line-height: 40px
+  //   border-radius: 20px
+  //   cursor: pointer
 </style>
