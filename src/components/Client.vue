@@ -5,7 +5,11 @@
       <div v-if="!asked" @click="onAsk" class="sign-btn">Ask for repair</div>
       <div v-else>
         <p>Країна-виробник</p>
-        <input v-model="type.country" type="text">
+        <input v-model="machineType.country" type="text">
+        <p>Рік випуску</p>
+        <input v-model="machineType.year" type="number" min="1990">
+        <p>Марка</p>
+        <input v-model="machineType.mark" type="text">
 <!--         <select>
           <option>Деревообробний</option>
           <option>Каменеобробний</option>
@@ -36,8 +40,10 @@
       return {
         name:  null,
         asked: false,
-        type: {
-          country: null
+        machineType: {
+          country: null,
+          year: null,
+          mark: null
         }
       }
     },
