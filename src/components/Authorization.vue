@@ -30,9 +30,7 @@
     transform: translateX(-50%)
     width: 140px
     height: 40px
-    margin-bottom: 15px
     background-color: lightblue
-    text-decoration: none
     text-align: center
     line-height: 40px
     border-radius: 20px

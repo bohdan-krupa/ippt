@@ -3,7 +3,7 @@
     <div class="container">
       <h3>{{ name }}</h3>
     </div>
-    <div @click="onSignOut" class="sign-btn">Sign out</div>
+    <div @click="onSignOut" class="sign-out-btn">Sign out</div>
   </div>
 </template>
 
@@ -47,7 +47,14 @@
 </script>
 
 <style lang="sass">
-  .sign-btn
+  .sign-out-btn
     position: absolute
-    bottom: 10px
+    bottom: 20px
+    width: 140px
+    height: 40px
+    background-color: lightblue
+    text-align: center
+    line-height: 40px
+    border-radius: 20px
+    cursor: pointer
 </style>
