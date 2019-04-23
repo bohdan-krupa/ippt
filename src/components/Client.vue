@@ -4,12 +4,24 @@
       <h3>{{ name }}</h3>
       <div v-if="!asked" @click="onAsk" class="sign-btn">Ask for repair</div>
       <div v-else>
-        <p>Email</p>
-        <input v-model="email" :class="{ green: isGood.email }" type="text">
-        <p>Password</p>
+        <p>Верстат:</p>
+        <select>
+          <option>Деревообробний</option>
+          <option>Каменеобробний</option>
+          <option>Металорізальний</option>
+          <option>Ткацький</option>
+          <option>Друкарський</option>
+          <option>Свердлильний</option>
+          <option>Токарний</option>
+          <option>Фрезерний</option>
+          <option>Шліфувальний</option>
+          <option>Стругальний</option>
+          <option>Довбальний</option>
+        </select>
+        <!-- <p>Password</p>
         <input v-model="password" :class="{ green: isGood.password }" type="password">
         <p>Password once again</p>
-        <input v-model="password2" :class="{ green: isGood.password2 }" type="password">
+        <input v-model="password2" :class="{ green: isGood.password2 }" type="password"> -->
       </div>
     </div>
     <div @click="onSignOut" class="sign-out-btn">Sign out</div>
