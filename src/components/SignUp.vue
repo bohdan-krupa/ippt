@@ -1,6 +1,6 @@
 <template>
 	<div class="container">
-    <div v-if="showing == 1">
+    <div v-if="!loading">
       <p>Email</p>
       <input v-model="email" :class="{ green: isGood.email }" type="text">
       <p>Password</p>
@@ -12,26 +12,16 @@
     <div v-if="loading">
       <h3>Loading...</h3>
     </div>
-    <div v-if="showing == 3">
-      <h3>You are successfully registered</h3>
-      <router-link to="/sign-in">Sign in</router-link>
-    </div>
 	</div>
 </template>
 
 <script>
   import firebase from 'firebase'
 
-  let mode = {
-    inputs:  1,
-    loading: 2,
-    success: 3
-  }
-
   export default {
     data() {
       return {
-        showing:   mode.inputs,
+        loading:   false,
         email:     null,
         password:  null,
         password2: null,
@@ -59,20 +49,21 @@
     methods: {
       onSignUp() {
         if (this.isGood.email && !this.isGood.password && !this.isGood.password2) {
-          this.showing = mode.loading
+          this.loading = true
 
           firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(() => {
             this.$notify({
               title: 'You are registered',
               type: 'success'
             })
+            this.$router.replace('/')
           },
           error => {
             this.$notify({
               title: error.message,
               type: 'error'
             })
-            this.showing = mode.inputs
+            this.loading = false
           })
         }
       }
