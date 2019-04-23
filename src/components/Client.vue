@@ -90,7 +90,7 @@
             this.asked = false
 
             this.$notify({
-              title: 'Готово',
+              title: 'Done',
               type: 'success'
             })
           })
@@ -113,6 +113,11 @@
           this.getType.country = snap.val().country
           this.getType.year = snap.val().year
           this.getType.mark = snap.val().mark
+
+          this.$notify({
+            title: 'Done',
+            type: 'success'
+          })
         })
       }
     }
