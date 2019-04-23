@@ -15,9 +15,10 @@
         <div @click="onDone" class="sign-btn">Готово</div>
       </div>
       <div v-if="tasked">
-        <h3>{{ getType.country }}</h3>
-        <h3>{{ getType.year }}</h3>
-        <h3>{{ getType.mark }}</h3>
+        <p>Machine:</p>
+        <h4>{{ getType.country }}</h4>
+        <h4>{{ getType.year }}</h4>
+        <h4>{{ getType.mark }}</h4>
       </div>
     </div>
     <div @click="onSignOut" class="sign-out-btn">Sign out</div>
@@ -101,8 +102,12 @@
         }
       },
       onMyTasks() {
+        this.tasked = true
+
         firebase.database().ref('users/' + this.uId).once('value', snap => {
-          this.getType.country = 'Fs'
+          this.getType.country = snap.val().country
+          this.getType.year = snap.val().year
+          this.getType.mark = snap.val().mark
         })
       }
     }
