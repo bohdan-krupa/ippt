@@ -2,7 +2,7 @@
   <div>
     <div class="container">
       <div v-if="!asked" @click="onAsk" class="sign-btn">Ask for repair</div>
-      <div v-if="asked && !loading">
+      <div v-else>
         <p>Країна-виробник</p>
         <input v-model="machineType.country" type="text">
         <p>Рік випуску</p>
@@ -10,11 +10,6 @@
         <p>Марка</p>
         <input v-model="machineType.mark" type="text">
         <div @click="onDone" class="sign-btn">Готово</div>
-      </div>
-      <div v-if="loading">
-        <div v-if="loading">
-          <h3>Loading...</h3>
-        </div>
       </div>
     </div>
     <div @click="onSignOut" class="sign-out-btn">Sign out</div>
@@ -28,7 +23,6 @@
     data() {
       return {
         asked:   false,
-        loading: false,
         uId:     null,
         machineType: {
           country: null,
@@ -68,13 +62,18 @@
       },
       onDone() {
         if (this.machineType.country && this.machineType.year && this.machineType.mark) {
-          this.loading = true
+          this.$notify({
+            title: 'Loading...',
+            type: 'success'
+          })
 
           firebase.database().ref('users/' + this.uId).set({
             country: this.machineType.country,
             year: this.machineType.year,
             mark: this.machineType.mark
           }).then(() => {
+            this.asked = false
+
             this.$notify({
               title: 'Готово',
               type: 'success'
