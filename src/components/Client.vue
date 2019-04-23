@@ -28,7 +28,7 @@
     data() {
       return {
         asked:   false,
-        loading: false
+        loading: false,
         uId:     null,
         machineType: {
           country: null,
@@ -69,11 +69,16 @@
       onDone() {
         if (this.machineType.country && this.machineType.year && this.machineType.mark) {
           this.loading = true
-          
+
           firebase.database().ref('users/' + this.uId).set({
             country: this.machineType.country,
             year: this.machineType.year,
             mark: this.machineType.mark
+          }).then(() => {
+            this.$notify({
+              title: 'Готово',
+              type: 'success'
+            })
           })
         } else {
           this.$notify({
