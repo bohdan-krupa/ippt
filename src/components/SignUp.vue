@@ -1,6 +1,6 @@
 <template>
 	<div class="container">
-    <div v-if="showing == 1">
+    <div v-if="!loading">
       <p>Email</p>
       <input v-model="email" :class="{ green: isGood.email }" type="text">
       <p>Password</p>
@@ -9,7 +9,7 @@
       <input v-model="password2" :class="{ green: isGood.password2 }" type="password">
       <div @click="onSignUp" class="sign-btn">Sign up</div>
     </div>
-    <div v-if="showing == 2">
+    <div v-if="loading">
       <h3>Loading...</h3>
     </div>
     <div v-if="showing == 3">
@@ -62,7 +62,10 @@
           this.showing = mode.loading
 
           firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(() => {
-            this.showing = mode.success
+            this.$notify({
+              title: 'You are registered',
+              type: 'success'
+            })
           },
           error => {
             this.$notify({
