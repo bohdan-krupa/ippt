@@ -1,10 +1,10 @@
 <template>
   <div class="container">
       <p>Email</p>
-      <input v-model="email" :class="{ red: isBad.email }" type="text">
+      <input v-model="email" type="text">
       <p>Password</p>
-      <input v-model="password" :class="{ red: isBad.password }" type="password">
-      <div @click="onSignIn" class="sign-btn">Sign up</div>
+      <input v-model="password" type="password">
+      <div @click="onSignIn" class="sign-btn">Sign in</div>
   </div>
 </template>
 
@@ -15,29 +15,27 @@
     data() {
       return {
         email:    null,
-        password: null,
-        isBad: {
-          email: false,
-          password: false
-        }
+        password: null
       }
     },
     methods: {
       onSignIn() {
-        firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(() => {
-          this.$router.push('/')
-        }).catch(error => {
-          this.isBad.email = true
-          this.isBad.password = true
-
-          alert(error.message)
-        })
+        if (this.email && this.password.length > 5) {
+          firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(() => {
+            this.$notify({
+              title: 'You are logged in',
+              type: 'success'
+            })
+            this.$router.push('/client')
+          },
+          error => {
+            this.$notify({
+              title: error.message,
+              type: 'error'
+            })
+          })
+        }
       }
     }
   }
 </script>
-
-<style lang="sass">  
-  .red
-    border-color: red
-</style>

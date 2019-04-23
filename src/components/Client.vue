@@ -26,10 +26,18 @@
     methods: {
       onSignOut() {
         firebase.auth().signOut().then(() => {
-          alert("Outed")
+         this.$notify({
+            title: 'You are logged out',
+            type: 'success'
+          })
+
           this.$router.push('/')
-        }).catch(error => {
-          alert(error.message)
+        },
+        error => {
+          this.$notify({
+            title: error.message,
+            type: 'error'
+          })
         })
       }
     }

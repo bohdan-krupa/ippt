@@ -2,6 +2,7 @@
   <div>
     <h1>Repair of machines</h1>
     <router-view></router-view>
+    <notifications position="bottom right" />
   </div>
 </template>
 
@@ -11,6 +12,7 @@
   *
     font-family: 'Montserrat'
     color: #333
+    user-select: none
 
   .container
     position: absolute
