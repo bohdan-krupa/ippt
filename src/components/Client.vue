@@ -7,7 +7,7 @@
         <p>Країна-виробник</p>
         <input v-model="machineType.country" type="text">
         <p>Рік випуску</p>
-        <input v-model="machineType.year" type="number" min="1990">
+        <input v-model="machineType.year" type="number" min="1980">
         <p>Марка</p>
         <input v-model="machineType.mark" type="text">
 <!--         <select>
