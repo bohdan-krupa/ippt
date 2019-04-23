@@ -30,8 +30,9 @@
   export default {
     data() {
       return {
-        asked:   false,
-        uId:     null,
+        asked:  false,
+        tasked: false,
+        uId:    null,
         machineType: {
           country: null,
           year:    null,
@@ -101,7 +102,7 @@
       },
       onMyTasks() {
         firebase.database().ref('users/' + this.uId).once('value', snap => {
-
+          this.getType.country = 'Fs'
         })
       }
     }
