@@ -11,13 +11,13 @@
   export default {
     data() {
       return {
-        name: 'none'
+        name: null
       }
     },
     created() {
       firebase.auth().onAuthStateChanged(user => {
         if (user) {
-          this.name = user.email
+          this.name = user.emailVerified
         } else {
           this.$router.replace('/')
         }
@@ -31,7 +31,7 @@
             type: 'success'
           })
 
-          this.$router.push('/')
+          this.$router.replace('/')
         },
         error => {
           this.$notify({
@@ -43,3 +43,8 @@
     }
   }
 </script>
+
+<style lang="sass">
+  .sign-btn
+    bottom: 0
+</style>
