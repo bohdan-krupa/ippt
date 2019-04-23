@@ -1,11 +1,11 @@
 <template>
   <div>
     <div class="container">
-      <div v-if="!asked">
+      <div v-if="!asked && !tasked">
         <div @click="onAsk" class="sign-btn">Ask for repair</div>
         <div @click="onMyTasks" class="sign-btn">My tasks</div>
       </div>
-      <div v-else>
+      <div v-if="asked">
         <p>Країна-виробник</p>
         <input v-model="machineType.country" type="text">
         <p>Рік випуску</p>
@@ -13,6 +13,11 @@
         <p>Марка</p>
         <input v-model="machineType.mark" type="text">
         <div @click="onDone" class="sign-btn">Готово</div>
+      </div>
+      <div v-if="tasked">
+        <h3>{{ getType.country }}</h3>
+        <h3>{{ getType.year }}</h3>
+        <h3>{{ getType.mark }}</h3>
       </div>
     </div>
     <div @click="onSignOut" class="sign-out-btn">Sign out</div>
@@ -28,6 +33,11 @@
         asked:   false,
         uId:     null,
         machineType: {
+          country: null,
+          year:    null,
+          mark:    null
+        },
+        getType: {
           country: null,
           year:    null,
           mark:    null
@@ -88,6 +98,11 @@
             type: 'warn'
           })
         }
+      },
+      onMyTasks() {
+        firebase.database().ref('users/' + this.uId).once('value', snap => {
+
+        })
       }
     }
   }
