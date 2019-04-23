@@ -48,7 +48,6 @@
 
 <style lang="sass">
   .sign-btn
-    position: relative
-    bottom: 0
-    left: 0
+    position: absolute
+    bottom: 10px
 </style>
