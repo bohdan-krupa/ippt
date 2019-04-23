@@ -2,7 +2,10 @@
   <div>
     <div class="container">
       <h3>{{ name }}</h3>
-      <div class="sign-btn">Ask for repair</div>
+      <div v-if="!asked" @click="onAsk" class="sign-btn">Ask for repair</div>
+      <div v-else>
+        <p>sdfsdf</p>
+      </div>
     </div>
     <div @click="onSignOut" class="sign-out-btn">Sign out</div>
   </div>
@@ -14,7 +17,8 @@
   export default {
     data() {
       return {
-        name: null
+        name:  null,
+        asked: false
       }
     },
     created() {
@@ -42,6 +46,9 @@
             type: 'error'
           })
         })
+      },
+      onAsk() {
+        this.asked = true
       }
     }
   }
