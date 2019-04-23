@@ -4,8 +4,9 @@
       <h3>{{ name }}</h3>
       <div v-if="!asked" @click="onAsk" class="sign-btn">Ask for repair</div>
       <div v-else>
-        <p>Верстат:</p>
-        <select>
+        <p>Країна-виробник</p>
+        <input v-model="type.country" type="text">
+<!--         <select>
           <option>Деревообробний</option>
           <option>Каменеобробний</option>
           <option>Металорізальний</option>
@@ -17,9 +18,8 @@
           <option>Шліфувальний</option>
           <option>Стругальний</option>
           <option>Довбальний</option>
-        </select>
+        </select> -->
         <!-- <p>Password</p>
-        <input v-model="password" :class="{ green: isGood.password }" type="password">
         <p>Password once again</p>
         <input v-model="password2" :class="{ green: isGood.password2 }" type="password"> -->
       </div>
@@ -35,7 +35,10 @@
     data() {
       return {
         name:  null,
-        asked: false
+        asked: false,
+        type: {
+          country: null
+        }
       }
     },
     created() {
