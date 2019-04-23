@@ -2,6 +2,7 @@
   <div>
     <div class="container">
       <h3>{{ name }}</h3>
+      <div class="sign-btn">Ask for repair</div>
     </div>
     <div @click="onSignOut" class="sign-out-btn">Sign out</div>
   </div>
@@ -19,7 +20,7 @@
     created() {
       firebase.auth().onAuthStateChanged(user => {
         if (user) {
-          this.name = user.emailVerified
+          this.name = user.email
         } else {
           this.$router.replace('/')
         }
@@ -49,7 +50,8 @@
 <style lang="sass">
   .sign-out-btn
     position: absolute
-    bottom: 20px
+    left: 25px
+    bottom: 25px
     width: 140px
     height: 40px
     background-color: lightblue
