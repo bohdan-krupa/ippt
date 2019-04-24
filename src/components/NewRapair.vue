@@ -28,10 +28,7 @@
     methods: {
       onDone() {
         if (this.country && this.year && this.mark) {
-          this.$notify({
-            title: 'Loading...',
-            type: 'success'
-          })
+          this.success('Loading...')
 
           firebase.database().ref('users/' + this.uId).set({
             country: this.country,
@@ -39,24 +36,13 @@
             mark: this.mark
           }).then(() => {
             this.$router.replace('/client')
-
-            this.$notify({
-              title: 'Done',
-              type: 'success'
-            })
+            this.success('Done')
           },
           error => {
-            this.$notify({
-              title: error.message,
-              type: 'error'
-            })
             this.error(error.message)
           })
         } else {
-          this.$notify({
-            title: 'Невірні дані',
-            type: 'warn'
-          })
+          this.warn('Data is incorrect')
         }
       }
     }
