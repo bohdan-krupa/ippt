@@ -46,8 +46,9 @@
           error => {
             this.$notify({
               title: error.message,
-              type: 'success'
+              type: 'error'
             })
+            this.sayHi('sfd')
           })
         } else {
           this.$notify({

@@ -21,12 +21,9 @@ Vue.config.productionTip = false
 new Vue({
   router,
   render: h => h(App),
+  methods: {
+    sayHi() {
+      alert('sfg')
+    }
+  }
 }).$mount('#app')
-
-// class notify {
-//   e: text => thi
-// }
-$notify({
-  title: 'dsfg',
-  type: 'error'
-})
