@@ -1,18 +1,11 @@
 <template>
   <div>
     <div class="container">
-    <!--   <div v-if="!asked && !tasked">
-        
-      </div> -->
-      <div v-if="asked">
-        <p>Країна-виробник</p>
-        <input v-model="machineType.country" type="text">
-        <p>Рік випуску</p>
-        <input v-model="machineType.year" type="number" min="1980">
-        <p>Марка</p>
-        <input v-model="machineType.mark" type="text">
-        <div @click="onDone" class="sign-btn">Готово</div>
+      <div v-if="!asked && !tasked">
+        <div @click="onAsk" class="sign-btn">Ask for repair</div>
+        <div @click="onMyTasks" class="sign-btn">My tasks</div>
       </div>
+      <router-view></router-view>
       <div v-if="tasked">
         <p>Machine:</p>
         <h4>{{ getType.country }}</h4>
