@@ -48,7 +48,7 @@
               title: error.message,
               type: 'error'
             })
-            this.sayHi('sfd')
+            sayHi()
           })
         } else {
           this.$notify({
