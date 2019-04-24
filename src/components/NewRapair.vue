@@ -1,26 +1,53 @@
 <template>
   <div class="container">
     <p>Країна-виробник</p>
-    <input v-model="machineType.country" type="text">
+    <input v-model="country" type="text">
     <p>Рік випуску</p>
-    <input v-model="machineType.year" type="number" min="1980">
+    <input v-model="year" type="number" min="1980">
     <p>Марка</p>
-    <input v-model="machineType.mark" type="text">
+    <input v-model="mark" type="text">
     <div @click="onDone" class="sign-btn">Готово</div>
   </div>
 </template>
 
 <script>
+  import firebase from 'firebase'
+
   export default {
     data() {
       return {
-        asked:  false,
-        tasked: false,
-        uId:    null,
-        machineType: {
-          country: null,
-          year:    null,
-          mark:    null
+        country: null,
+        year:    null,
+        mark:    null,
+
+        uId:     null
+      }
+    },
+    methods: {
+      onDone() {
+        if (this.country && this.year && this.mark) {
+          this.$notify({
+            title: 'Loading...',
+            type: 'success'
+          })
+
+          firebase.database().ref('users/' + this.uId).set({
+            country: this.country,
+            year: this.year,
+            mark: this.mark
+          }).then(() => {
+            this.$router.replace('/client')
+
+            this.$notify({
+              title: 'Done',
+              type: 'success'
+            })
+          })
+        } else {
+          this.$notify({
+            title: 'Невірні дані',
+            type: 'warn'
+          })
         }
       }
     }
