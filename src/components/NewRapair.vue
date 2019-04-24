@@ -42,6 +42,12 @@
               title: 'Done',
               type: 'success'
             })
+          },
+          error => {
+            this.$notify({
+              title: error.message,
+              type: 'success'
+            })
           })
         } else {
           this.$notify({

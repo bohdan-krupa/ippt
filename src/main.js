@@ -22,3 +22,11 @@ new Vue({
   router,
   render: h => h(App),
 }).$mount('#app')
+
+// class notify {
+//   e: text => thi
+// }
+$notify({
+  title: 'dsfg',
+  type: 'error'
+})
