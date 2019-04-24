@@ -11,18 +11,8 @@
 </template>
 
 <script>
-  import Vue from 'vue'
   import firebase from 'firebase'
-
-  let mix = Vue.mixin({
-    methods: {
-      sayHi() {
-        this.$notify({
-          title: 'sdfg'
-        })
-      }
-    }
-  })
+  import toast from '../toast.js'
 
   export default {
     data() {
@@ -34,7 +24,7 @@
         uId:     null
       }
     },
-    mixins: [mix],
+    mixins: [toast],
     methods: {
       onDone() {
         if (this.country && this.year && this.mark) {
@@ -60,7 +50,7 @@
               title: error.message,
               type: 'error'
             })
-            this.sayHi()
+            this.error(error.message)
           })
         } else {
           this.$notify({
