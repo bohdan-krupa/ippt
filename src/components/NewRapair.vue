@@ -13,6 +13,12 @@
 <script>
   import firebase from 'firebase'
 
+  function sayHi() {
+    this.$notify({
+      title: 'sdfg'
+    }).bind(this)
+  }
+
   export default {
     data() {
       return {
@@ -23,7 +29,6 @@
         uId:     null
       }
     },
-    mixins: [wow],
     methods: {
       onDone() {
         if (this.country && this.year && this.mark) {
@@ -49,7 +54,7 @@
               title: error.message,
               type: 'error'
             })
-            // sayHi()
+            sayHi()
           })
         } else {
           this.$notify({
