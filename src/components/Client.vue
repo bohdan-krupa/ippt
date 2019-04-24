@@ -12,7 +12,7 @@
         <h4>{{ getType.mark }}</h4>
       </div>
     </div>
-    <div @click="onSignOut" class="sign-out-btn">Sign out</div>
+    <div @click="onSignOut" class="bottom-right-btn">Sign out</div>
   </div>
 </template>
 
@@ -88,17 +88,3 @@
     }
   }
 </script>
-
-<style lang="sass">
-  .sign-out-btn
-    position: absolute
-    left: 25px
-    bottom: 25px
-    width: 140px
-    height: 40px
-    background-color: lightblue
-    text-align: center
-    line-height: 40px
-    border-radius: 20px
-    cursor: pointer
-</style>

@@ -7,6 +7,7 @@
     <p>Марка</p>
     <input v-model="mark" type="text">
     <div @click="onDone" class="sign-btn">Готово</div>
+    <div class="bottom-right-btn">Back</div>
   </div>
 </template>
 
