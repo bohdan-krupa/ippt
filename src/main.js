@@ -21,9 +21,12 @@ Vue.config.productionTip = false
 new Vue({
   router,
   render: h => h(App),
+}).$mount('#app')
+
+let wow = Vue.mixin({
   methods: {
     sayHi() {
       alert('sfg')
     }
   }
-}).$mount('#app')
+})

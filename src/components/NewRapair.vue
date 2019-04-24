@@ -23,6 +23,7 @@
         uId:     null
       }
     },
+    mixins: [wow],
     methods: {
       onDone() {
         if (this.country && this.year && this.mark) {
@@ -48,7 +49,7 @@
               title: error.message,
               type: 'error'
             })
-            sayHi()
+            // sayHi()
           })
         } else {
           this.$notify({
