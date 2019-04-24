@@ -11,13 +11,18 @@
 </template>
 
 <script>
+  import Vue from 'vue'
   import firebase from 'firebase'
 
-  function sayHi() {
-    this.$notify({
-      title: 'sdfg'
-    }).bind(this)
-  }
+  let mix = Vue.mixin({
+    methods: {
+      sayHi() {
+        this.$notify({
+          title: 'sdfg'
+        })
+      }
+    }
+  })
 
   export default {
     data() {
@@ -29,6 +34,7 @@
         uId:     null
       }
     },
+    mixins: [mix],
     methods: {
       onDone() {
         if (this.country && this.year && this.mark) {
@@ -54,7 +60,7 @@
               title: error.message,
               type: 'error'
             })
-            sayHi()
+            this.sayHi()
           })
         } else {
           this.$notify({
