@@ -5,7 +5,6 @@
         <div @click="onAsk" class="sign-btn">Ask for repair</div>
         <div @click="onMyTasks" class="sign-btn">My tasks</div>
       </div>
-      <router-view></router-view>
       <div v-if="tasked">
         <p>Machine:</p>
         <h4>{{ getType.country }}</h4>
@@ -66,32 +65,6 @@
       },
       onAsk() {
         this.asked = true
-      },
-      onDone() {
-        if (this.machineType.country && this.machineType.year && this.machineType.mark) {
-          this.$notify({
-            title: 'Loading...',
-            type: 'success'
-          })
-
-          firebase.database().ref('users/' + this.uId).set({
-            country: this.machineType.country,
-            year: this.machineType.year,
-            mark: this.machineType.mark
-          }).then(() => {
-            this.asked = false
-
-            this.$notify({
-              title: 'Done',
-              type: 'success'
-            })
-          })
-        } else {
-          this.$notify({
-            title: 'Невірні дані',
-            type: 'warn'
-          })
-        }
       },
       onMyTasks() {
         this.tasked = true
