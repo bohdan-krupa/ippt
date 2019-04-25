@@ -1,12 +1,14 @@
 <template>
-  <div class="container">
-    <p>Країна-виробник</p>
-    <input v-model="country" type="text">
-    <p>Рік випуску</p>
-    <input v-model="year" type="number" min="1980">
-    <p>Марка</p>
-    <input v-model="mark" type="text">
-    <div @click="onDone" class="sign-btn">Готово</div>
+  <div>
+    <div class="container">
+      <p>Країна-виробник</p>
+      <input v-model="country" type="text">
+      <p>Рік випуску</p>
+      <input v-model="year" type="number" min="1980">
+      <p>Марка</p>
+      <input v-model="mark" type="text">
+      <div @click="onDone" class="sign-btn">Готово</div>
+    </div>
     <div class="bottom-right-btn">Back</div>
   </div>
 </template>

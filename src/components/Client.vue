@@ -2,7 +2,7 @@
   <div>
     <div class="container">
       <div v-if="!asked && !tasked">
-        <div @click="onAsk" class="sign-btn">Ask for repair</div>
+        <router-link to="/client/new-repair" class="sign-btn">Ask for repair</router-link>
         <div @click="onMyTasks" class="sign-btn">My tasks</div>
       </div>
       <div v-if="tasked">
