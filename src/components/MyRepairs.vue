@@ -17,21 +17,23 @@
   export default {
     data() {
       return {
-          country: 'null',
-          year:    'null',
-          mark:    'null'
+          country: null,
+          year:    null,
+          mark:    null
       }
     },
     mixins: [toast],
     created() {
       this.success('Loading...')
 
-      firebase.database().ref('users/' + this.uId).once('value', snap => {
-        this.country = 'snap.val().country'
-        this.year = snap.val().year
-        this.mark = snap.val().mark
+      firebase.auth().onAuthStateChanged(user => {
+        firebase.database().ref('users/' + user.uid).once('value', snap => {
+          this.country = snap.val().country
+          this.year = snap.val().year
+          this.mark = snap.val().mark
 
-        this.success('Done')
+          this.success('Done')
+        })
       })
     },
     methods: {
