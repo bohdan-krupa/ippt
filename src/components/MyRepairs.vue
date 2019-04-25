@@ -27,7 +27,7 @@
       this.success('Loading...')
 
       firebase.database().ref('users/' + this.uId).once('value', snap => {
-        this.country = snap.val().country
+        this.country = 'snap.val().country'
         this.year = snap.val().year
         this.mark = snap.val().mark
 
