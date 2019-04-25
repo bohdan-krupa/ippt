@@ -9,7 +9,7 @@
       <input v-model="mark" type="text">
       <div @click="onDone" class="sign-btn">Готово</div>
     </div>
-    <div class="bottom-right-btn">Back</div>
+    <div @click="onBack" class="bottom-right-btn">Back</div>
   </div>
 </template>
 
@@ -47,6 +47,9 @@
         } else {
           this.warn('Data is incorrect')
         }
+      },
+      onBack() {
+        this.$router.go(-1)
       }
     }
   }
