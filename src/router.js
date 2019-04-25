@@ -4,7 +4,8 @@ import Authorization from '../src/components/Authorization.vue'
 import SignIn from '../src/components/SignIn.vue'
 import SignUp from '../src/components/SignUp.vue'
 import Client from '../src/components/Client.vue'
-import NewRepair from '../src/components/NewRapair.vue'
+import NewRepair from '../src/components/NewRepair.vue'
+import MyRepairs from '../src/components/MyRepairs.vue'
 
 Vue.use(VueRouter)
 
@@ -14,6 +15,7 @@ export default new VueRouter({
     { path: '/sign-in', component: SignIn },
     { path: '/sign-up', component: SignUp },
     { path: '/client', component: Client },
-    { path: '/client/new-repair', component: NewRepair }
+    { path: '/client/new-repair', component: NewRepair },
+    { path: '/client/my-repairs', component: MyRepairs }
   ]
 })

@@ -11,17 +11,18 @@
 </template>
 
 <script>
-  import firbase from 'firbase'
+  import firebase from 'firebase'
   import toast from '../toast.js'
 
   export default {
     data() {
       return {
-          country: null,
-          year:    null,
-          mark:    null
+          country: 'null',
+          year:    'null',
+          mark:    'null'
       }
     },
+    mixins: [toast],
     created() {
       this.success('Loading...')
 
@@ -32,6 +33,11 @@
 
         this.success('Done')
       })
+    },
+    methods: {
+      onBack() {
+        this.$router.go(-1)
+      }
     }
   }
 </script>
