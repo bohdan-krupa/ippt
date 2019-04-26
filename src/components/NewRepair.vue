@@ -40,6 +40,10 @@
         if (this.country && this.year && this.mark) {
           this.success('Loading...')
 
+          firebase.database().ref('users/' + this.uId).once('value', snap => {
+            console.log(snap.val())
+          })
+
           firebase.database().ref('users/' + this.uId).set({
             country: this.country,
             year: this.year,
