@@ -1,10 +1,12 @@
 <template>
   <div>
     <div class="container">
-      <p>Machine:</p>
-      <h4>{{ country }}</h4>
-      <h4>{{ year }}</h4>
-      <h4>{{ mark }}</h4>
+      <div v-for="(machine, index) in machines" :key="index">
+        <p>Machine:</p>
+        <h4>{{ machine.country }}</h4>
+        <h4>{{ machine.year }}</h4>
+        <h4>{{ machine.mark }}</h4>
+      </div>
     </div>
     <div @click="onBack" class="bottom-right-btn">Back</div>
   </div>
@@ -17,9 +19,7 @@
   export default {
     data() {
       return {
-          country: null,
-          year:    null,
-          mark:    null
+          machines: []
       }
     },
     mixins: [toast],
@@ -28,9 +28,15 @@
 
       firebase.auth().onAuthStateChanged(user => {
         firebase.database().ref('users/' + user.uid).once('value', snap => {
-          this.country = snap.val().country
-          this.year = snap.val().year
-          this.mark = snap.val().mark
+          this.machines = snap.val()
+          // currentData.forEach((val, index) => {
+          //   if (index > 0) {
+
+          //   }
+          // })
+          // this.country = snap.val().country
+          // this.year = snap.val().year
+          // this.mark = snap.val().mark
 
           this.success('Done')
         })
