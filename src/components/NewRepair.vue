@@ -51,7 +51,7 @@
             console.log(currentData)
 
             firebase.database().ref('users/' + this.uId).set({
-              currentData
+              ...currentData
             }).then(() => {
               this.$router.replace('/client')
               this.success('Done')
