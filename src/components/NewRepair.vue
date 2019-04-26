@@ -42,6 +42,7 @@
 
           firebase.database().ref('users/' + this.uId).once('value', snap => {
             let currentData = []
+            console.log(...snap.val())
             currentData.push(snap.val())
             currentData.push({
               country: this.country,
