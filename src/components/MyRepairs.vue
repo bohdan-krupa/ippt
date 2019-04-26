@@ -28,16 +28,10 @@
 
       firebase.auth().onAuthStateChanged(user => {
         firebase.database().ref('users/' + user.uid).once('value', snap => {
-          this.machines = snap.val()
-          // currentData.forEach((val, index) => {
-          //   if (index > 0) {
-
-          //   }
-          // })
-          // this.country = snap.val().country
-          // this.year = snap.val().year
-          // this.mark = snap.val().mark
-
+          let currentData = snap.val()
+          currentData.shift()
+          this.machines = currentData
+          
           this.success('Done')
         })
       })
