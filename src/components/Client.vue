@@ -14,17 +14,8 @@
   export default {
     data() {
       return {
-        uId: null
+        
       }
-    },
-    created() {
-      firebase.auth().onAuthStateChanged(user => {
-        if (user) {
-          this.uId = user.uid
-        } else {
-          this.$router.replace('/')
-        }
-      })
     },
     methods: {
       onSignOut() {

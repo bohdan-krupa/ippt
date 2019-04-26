@@ -2,7 +2,7 @@
   <div>
     <h1>Repair of machines</h1>
     <router-view></router-view>
-    <notifications position="bottom right" />
+    <notifications position="top right" />
   </div>
 </template>
 

@@ -28,6 +28,13 @@
       }
     },
     mixins: [toast],
+    created() {
+      firebase.auth().onAuthStateChanged(user => {
+        if (user) {
+          this.uId = user.uid
+        }
+      })
+    },
     methods: {
       onDone() {
         if (this.country && this.year && this.mark) {
