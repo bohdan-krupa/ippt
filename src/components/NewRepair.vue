@@ -41,8 +41,8 @@
           this.success('Loading...')
 
           firebase.database().ref('users/' + this.uId).once('value', snap => {
-            let currentData = ...snap.val()
-            // currentData.push()
+            let currentData = []
+            currentData.push(...snap.val())
             currentData.push({
               country: this.country,
               year: this.year,
