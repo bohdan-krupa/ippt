@@ -27,9 +27,8 @@
       this.success('Loading...')
 
       firebase.auth().onAuthStateChanged(user => {
-        firebase.database().ref('users/' + user.uid).once('value', snap => {
+        firebase.database().ref('clients/' + user.uid + '/machines').once('value', snap => {
           let currentData = snap.val()
-          currentData.shift()
           this.machines = currentData
           
           this.success('Done')
