@@ -5,11 +5,11 @@
     <h4>{{ machine.year }}</h4>
     <h4>{{ machine.mark }}</h4>
 
-    <p>Name:</p>
+    <p>* Name:</p>
     <input v-model="repair.name" type="text">
-    <p>Duration (days):</p>
+    <p>* Duration (days):</p>
     <input v-model="repair.duration" type="number">
-    <p>Price ($):</p>
+    <p>* Price ($):</p>
     <input v-model="repair.price" type="number">
     <p>Notes:</p>
     <input v-model="repair.notes" type="text">
@@ -46,7 +46,9 @@
     },
     methods: {
       onSetRepairType() {
-        console.log('Микола класний')
+        if (this.repair.name && this.repair.duration && this.repair.price) {
+
+        }
       }
     }
   }
