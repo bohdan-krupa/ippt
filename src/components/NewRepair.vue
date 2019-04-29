@@ -51,9 +51,8 @@
             if (!snap.val()) {
               firebase.database().ref('users/' + this.uId).set({
                 email: this.email,
-                repairs: null
               }).then(() => {
-                // this.pushRepair(newRepair)
+                this.pushRepair(newRepair)
               },
               error => {
                 this.error(error.message)
