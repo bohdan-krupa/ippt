@@ -10,6 +10,7 @@
 
 <script>
   import firebase from 'firebase'
+  import toast from '../toast.js'
 
   export default {
     data() {
@@ -18,21 +19,16 @@
         password: null
       }
     },
+    mixins: [toast],
     methods: {
       onSignIn() {
         if (this.email && this.password.length > 5) {
           firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(() => {
-            this.$notify({
-              title: 'You are logged in',
-              type: 'success'
-            })
+            this.success('You are logged in')
             this.$router.replace('/client')
           },
           error => {
-            this.$notify({
-              title: error.message,
-              type: 'error'
-            })
+            this.error(error.message)
           })
         }
       }

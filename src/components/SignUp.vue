@@ -17,6 +17,7 @@
 
 <script>
   import firebase from 'firebase'
+  import toast from '../toast.js'
 
   export default {
     data() {
@@ -46,23 +47,18 @@
         this.isGood.password2 = this.isGood.password && this.password == val ? 1 : 0
       }
     },
+    mixins: [toast],
     methods: {
       onSignUp() {
         if (this.isGood.email && this.isGood.password && this.isGood.password2) {
           this.loading = true
 
           firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(() => {
-            this.$notify({
-              title: 'You are registered',
-              type: 'success'
-            })
+            this.success('You are registered')
             this.$router.replace('/')
           },
           error => {
-            this.$notify({
-              title: error.message,
-              type: 'error'
-            })
+            this.error(error.message)
             this.loading = false
           })
         }
