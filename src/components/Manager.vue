@@ -16,7 +16,10 @@
     },
     created() {
       firebase.database().ref('users').once('value', snap => {
-        this.users = snap.val()
+        let users = snap.val()
+        users.forEach(val => {
+          console.log(val)
+        })
       })
     }
   }
