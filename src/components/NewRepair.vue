@@ -43,7 +43,9 @@
             // let currentData = [...snap.val()]
             let currentData = snap.val()
 
-            console.log(currentData)
+            if (!currentData) {
+              console.log('sdf')
+            }
             currentData.push({
               country: this.country,
               year: this.year,
