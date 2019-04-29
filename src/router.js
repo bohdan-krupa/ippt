@@ -6,6 +6,7 @@ import SignUp from '../src/components/SignUp.vue'
 import Client from '../src/components/Client.vue'
 import NewRepair from '../src/components/NewRepair.vue'
 import MyRepairs from '../src/components/MyRepairs.vue'
+import Manager from '../src/components/Manager.vue'
 
 Vue.use(VueRouter)
 
@@ -16,6 +17,7 @@ export default new VueRouter({
     { path: '/sign-up', component: SignUp },
     { path: '/client', component: Client },
     { path: '/client/new-repair', component: NewRepair },
-    { path: '/client/my-repairs', component: MyRepairs }
+    { path: '/client/my-repairs', component: MyRepairs },
+    { path: '/manager', component: Manager }
   ]
 })
