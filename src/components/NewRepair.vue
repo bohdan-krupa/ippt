@@ -51,7 +51,7 @@
             if (!snap.val()) {
               firebase.database().ref('users/' + this.uId).set({
                 email: this.email,
-                repairs: [newRepair]
+                repairs: newRepair
               }).then(() => {
                 this.$router.replace('/client')
                 this.success('Done')
