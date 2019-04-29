@@ -7,6 +7,7 @@ import Client from '../src/components/Client.vue'
 import NewRepair from '../src/components/NewRepair.vue'
 import MyRepairs from '../src/components/MyRepairs.vue'
 import Manager from '../src/components/Manager.vue'
+import ManagerForUser from '../src/components/ManagerForUser.vue'
 
 Vue.use(VueRouter)
 
