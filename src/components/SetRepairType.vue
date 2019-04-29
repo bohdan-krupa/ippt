@@ -1,9 +1,9 @@
 <template>
   <div class="container">
-    <p>Machine:</p>
+<!--     <p>Machine:</p>
     <h4>{{ machine.country }}</h4>
     <h4>{{ machine.year }}</h4>
-    <h4>{{ machine.mark }}</h4>
+    <h4>{{ machine.mark }}</h4> -->
 
     <p>{{ repair }}</p>
 <!--     <input v-model="country" type="text">
@@ -16,7 +16,7 @@
 </template>
 
 <script>
-  // import firebase from 'firebase'
+  import firebase from 'firebase'
 
   export default {
     data() {
@@ -25,7 +25,12 @@
       }
     },
     created() {
-      this.repair = this.$route.params.repair
+      let client = this.$route.params.client
+      let machine = this.$route.params.machine
+
+      firebase.database().ref('clients/' + client + '/repairs/' + machine).once('value', snap => {
+        console.log(snap.val())
+      })
     }
   }
 </script>
