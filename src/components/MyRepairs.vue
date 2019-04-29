@@ -28,8 +28,13 @@
 
       firebase.auth().onAuthStateChanged(user => {
         firebase.database().ref('clients/' + user.uid + '/machines').once('value', snap => {
-          let currentData = snap.val()
-          this.machines = currentData
+          let data = snap.val()
+          let machines = []
+          
+          for (machine in data) {
+            machines.push(data[machine])
+          }
+          this.machines = machines
           
           this.success('Done')
         })
