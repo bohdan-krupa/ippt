@@ -29,11 +29,10 @@
     },
     mixins: [toast],
     created() {
-      firebase.auth().onAuthStateChanged(user => {
-        if (user) {
-          this.uId = user.uid
-        }
-      })
+      let user = firebase.auth().currentUser
+      if (user) {
+        this.uId = user.uid
+      }
     },
     methods: {
       onDone() {
@@ -42,6 +41,8 @@
 
           firebase.database().ref('users/' + this.uId).once('value', snap => {
             let currentData = [...snap.val()]
+
+            console.log(currentData)
             currentData.push({
               country: this.country,
               year: this.year,
