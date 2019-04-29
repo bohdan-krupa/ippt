@@ -1,7 +1,12 @@
 <template>
   <div class="container">
     <p>Clients:</p>
-    <p v-for="(client, index) in clients" :key="index" class="sign-btn">{{ client.email }}</p>
+    <router-link
+      v-for="(client, index) in clients"
+      :to="'/manager/' + client.id"
+      :key="index"
+      class="sign-btn"
+    >{{ client.email }}</router-link>
   </div>
 </template>
 
