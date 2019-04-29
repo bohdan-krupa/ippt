@@ -41,7 +41,7 @@
         if (this.country && this.year && this.mark) {
           this.success('Loading...')
 
-          firebase.database().ref('users/' + this.uId).once('value', snap => {
+          firebase.database().ref('clients/' + this.uId).once('value', snap => {
             let newRepair = {
                 country: this.country,
                 year:    this.year,
@@ -49,7 +49,7 @@
             }
 
             if (!snap.val()) {
-              firebase.database().ref('users/' + this.uId).set({
+              firebase.database().ref('clients/' + this.uId).set({
                 email: this.email,
               }).then(() => {
                 this.pushRepair(newRepair)
@@ -66,7 +66,7 @@
         }
       },
       pushRepair(repair) {
-        firebase.database().ref('users/' + this.uId + '/repairs').push().set(
+        firebase.database().ref('clients/' + this.uId + '/repairs').push().set(
           repair
         ).then(() => {
           this.$router.replace('/client')

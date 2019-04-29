@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <p>Clients:</p>
-    <p v-for="(client, index) in clients" :key="index">{{ client.email }}</p>
+    <p v-for="(client, index) in clients" :key="index" class="sign-btn">{{ client.email }}</p>
   </div>
 </template>
 
