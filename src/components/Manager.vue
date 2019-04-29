@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <p>Users:</p>
-    <p v-for="(user, index) in users" :key="index">{{ user }}</p>
+    <p v-for="(user, index) in users" :key="index">{{ user.email }}</p>
   </div>
 </template>
 
@@ -17,10 +17,16 @@
     created() {
       firebase.database().ref('users').once('value', snap => {
         let users = snap.val()
+        let currentData = []
 
         for (let user in users) {
-          console.log(users[user][0])
+          currentData.push({
+            'id': user,
+            'email': users[user][0]
+          })
         }
+
+        this.users = currentData
       })
     }
   }
