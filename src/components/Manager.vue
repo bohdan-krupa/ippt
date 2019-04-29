@@ -15,7 +15,7 @@
       }
     },
     created() {
-      firebase.database().ref('managers').once('value', snap => {
+      firebase.database().ref('users').once('value', snap => {
         this.users = snap.val()
       })
     }
