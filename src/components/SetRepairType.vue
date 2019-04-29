@@ -5,13 +5,15 @@
     <h4>{{ machine.year }}</h4>
     <h4>{{ machine.mark }}</h4>
 
-    <!-- <p>{{ repair }}</p> -->
-<!--     <input v-model="country" type="text">
-    <p>Рік випуску</p>
-    <input v-model="year" type="number" min="1980">
-    <p>Марка</p>
-    <input v-model="mark" type="text">
-    <div @click="onDone" class="sign-btn">Готово</div> -->
+    <p>Name:</p>
+    <input v-model="repair.name" type="text">
+    <p>Duration (days):</p>
+    <input v-model="repair.duration" type="number">
+    <p>Price ($):</p>
+    <input v-model="repair.price" type="number">
+    <p>Notes:</p>
+    <textarea v-model="repair.notes"></textarea>
+    <div @click="onDone" class="sign-btn">Готово</div>
   </div>
 </template>
 
@@ -25,6 +27,12 @@
           country: null,
           year:    null,
           mark:    null
+        },
+        repair: {
+          name:     null,
+          duration: null,
+          price:    null,
+          notes:    null
         }
       }
     },
