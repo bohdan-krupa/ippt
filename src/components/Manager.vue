@@ -17,10 +17,9 @@
     created() {
       firebase.database().ref('users').once('value', snap => {
         let users = snap.val()
+
         for (let user in users) {
-          for (let test in users.user) {
-            console.log(test)
-          }
+          console.log(users[user][0])
         }
       })
     }
