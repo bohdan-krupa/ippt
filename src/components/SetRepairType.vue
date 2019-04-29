@@ -47,7 +47,17 @@
     methods: {
       onSetRepairType() {
         if (this.repair.name && this.repair.duration && this.repair.price) {
-
+          firebase.database().ref('clients/' + client + '/repairs').push().set({
+            name:     this.repair.name,
+            duration: this.repair.duration,
+            price:    this.repair.price,
+            notes:    this.repair.notes
+          }).then(() => {
+            this.success('Done')
+          },
+          error => {
+            this.error(error.message)
+          })
         }
       }
     }
