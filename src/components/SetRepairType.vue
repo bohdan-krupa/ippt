@@ -5,7 +5,7 @@
     <h4>{{ machine.year }}</h4>
     <h4>{{ machine.mark }}</h4>
 
-    <p>Країна-виробник</p>
+    <p>{{ repair }}</p>
     <input v-model="country" type="text">
     <p>Рік випуску</p>
     <input v-model="year" type="number" min="1980">
@@ -14,3 +14,18 @@
     <div @click="onDone" class="sign-btn">Готово</div>
   </div>
 </template>
+
+<script>
+  import firebase from 'firebase'
+
+  export default {
+    data() {
+      return {
+        repair: null
+      }
+    },
+    created() {
+      this.repair = this.$route.params.repair
+    }
+  }
+</script>

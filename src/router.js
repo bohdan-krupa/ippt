@@ -8,7 +8,7 @@ import NewRepair from '../src/components/NewRepair.vue'
 import MyRepairs from '../src/components/MyRepairs.vue'
 import Manager from '../src/components/Manager.vue'
 import ManagerForUser from '../src/components/ManagerForUser.vue'
-import ManagerAnswer from '../src/components/ManagerAnswer.vue'
+import SetRepairType from '../src/components/SetRepairType.vue'
 
 Vue.use(VueRouter)
 
@@ -22,6 +22,6 @@ export default new VueRouter({
     { path: '/client/my-repairs', component: MyRepairs },
     { path: '/manager', component: Manager },
     { path: '/manager/:id', component: ManagerForUser },
-    { path: '/manager/set-repair-type/:user/:repair', component: ManagerAnswer }
+    { path: '/manager/set-repair-type/:user/:repair', component: SetRepairType }
   ]
 })
