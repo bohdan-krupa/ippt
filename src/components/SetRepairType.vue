@@ -40,7 +40,7 @@
       let client = this.$route.params.client
       let machine = this.$route.params.machine
 
-      firebase.database().ref('clients/' + client + '/repairs/' + machine).once('value', snap => {
+      firebase.database().ref('clients/' + client + '/machines/' + machine).once('value', snap => {
         this.machine = snap.val()
       })
     },

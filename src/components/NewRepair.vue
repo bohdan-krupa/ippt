@@ -66,7 +66,7 @@
         }
       },
       pushRepair(repair) {
-        firebase.database().ref('clients/' + this.uId + '/repairs').push().set(
+        firebase.database().ref('clients/' + this.uId + '/machines').push().set(
           repair
         ).then(() => {
           this.$router.replace('/client')
