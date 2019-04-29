@@ -40,7 +40,8 @@
           this.success('Loading...')
 
           firebase.database().ref('users/' + this.uId).once('value', snap => {
-            let currentData = [...snap.val()]
+            // let currentData = [...snap.val()]
+            let currentData = snap.val()
 
             console.log(currentData)
             currentData.push({
