@@ -24,7 +24,8 @@
         year:    null,
         mark:    null,
 
-        uId:     null
+        uId:     null,
+        email:   null
       }
     },
     mixins: [toast],
@@ -32,6 +33,7 @@
       let user = firebase.auth().currentUser
       if (user) {
         this.uId = user.uid
+        this.email = user.email
       }
     },
     methods: {
@@ -44,13 +46,20 @@
             let currentData = snap.val()
 
             if (!currentData) {
-              console.log('sdf')
+              currentData = {
+                email: this.email,
+                repairs: [{
+                  country: this.country,
+                  year: this.year,
+                  mark: this.mark
+                }]
+              }
             }
-            currentData.push({
-              country: this.country,
-              year: this.year,
-              mark: this.mark
-            })
+            // currentData.push({
+            //   country: this.country,
+            //   year: this.year,
+            //   mark: this.mark
+            // })
 
             firebase.database().ref('users/' + this.uId).set({
               ...currentData
