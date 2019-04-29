@@ -12,8 +12,8 @@
     <p>Price ($):</p>
     <input v-model="repair.price" type="number">
     <p>Notes:</p>
-    <textarea v-model="repair.notes"></textarea>
-    <div @click="onDone" class="sign-btn">Готово</div>
+    <input v-model="repair.notes" type="text">
+    <div @click="onSetRepairType" class="sign-btn">Готово</div>
   </div>
 </template>
 
@@ -43,6 +43,11 @@
       firebase.database().ref('clients/' + client + '/repairs/' + machine).once('value', snap => {
         this.machine = snap.val()
       })
+    },
+    methods: {
+      onSetRepairType() {
+        console.log('Микола класний')
+      }
     }
   }
 </script>
