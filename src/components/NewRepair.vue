@@ -49,7 +49,7 @@
             }
 
             if (!snap.val()) {
-              firebase.database().ref('users/' + this.uId).set({
+              firebase.database().ref('users/' + this.uId).setValue({
                 email: this.email,
                 repairs: newRepair
               }).then(() => {
