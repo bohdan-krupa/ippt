@@ -49,31 +49,33 @@
             }
 
             if (!snap.val()) {
-              firebase.database().ref('users/' + this.uId).setValue({
+              firebase.database().ref('users/' + this.uId).set({
                 email: this.email,
-                repairs: newRepair
+                repairs: null
               }).then(() => {
-                this.$router.replace('/client')
-                this.success('Done')
+                // this.pushRepair(newRepair)
               },
               error => {
                 this.error(error.message)
               })
             } else {
-              firebase.database().ref('users/' + this.uId + '/repairs').push().set(
-                newRepair
-              ).then(() => {
-                this.$router.replace('/client')
-                this.success('Done')
-              },
-              error => {
-                this.error(error.message)
-              })
+              this.pushRepair(newRepair)
             }
           })
         } else {
           this.warn('Data is incorrect')
         }
+      },
+      pushRepair(repair) {
+        firebase.database().ref('users/' + this.uId + '/repairs').push().set(
+          repair
+        ).then(() => {
+          this.$router.replace('/client')
+          this.success('Done')
+        },
+        error => {
+          this.error(error.message)
+        })
       },
       onBack() {
         this.$router.go(-1)
