@@ -6,22 +6,22 @@
     <h4>{{ machine.mark }}</h4>
 
     <p>{{ repair }}</p>
-    <input v-model="country" type="text">
+<!--     <input v-model="country" type="text">
     <p>Рік випуску</p>
     <input v-model="year" type="number" min="1980">
     <p>Марка</p>
     <input v-model="mark" type="text">
-    <div @click="onDone" class="sign-btn">Готово</div>
+    <div @click="onDone" class="sign-btn">Готово</div> -->
   </div>
 </template>
 
 <script>
-  import firebase from 'firebase'
+  // import firebase from 'firebase'
 
   export default {
     data() {
       return {
-        repair: null
+        repair: 'sdfg'
       }
     },
     created() {

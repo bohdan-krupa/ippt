@@ -22,6 +22,6 @@ export default new VueRouter({
     { path: '/client/my-repairs', component: MyRepairs },
     { path: '/manager', component: Manager },
     { path: '/manager/:id', component: ManagerForUser },
-    { path: '/manager/set-repair-type/:user/:repair', component: SetRepairType }
+    { path: '/set-repair-type/:user/:repair', component: SetRepairType }
   ]
 })
