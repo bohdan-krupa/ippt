@@ -22,11 +22,9 @@
         for (let client in clients) {
           currentData.push({
             'id': client,
-            'email': clients[client][0]
+            'email': clients[client].email
           })
         }
-
-        console.log(currentData)
 
         this.clients = currentData
       })
