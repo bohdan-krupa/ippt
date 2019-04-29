@@ -26,6 +26,8 @@
           })
         }
 
+        console.log(currentData)
+
         this.clients = currentData
       })
     }
