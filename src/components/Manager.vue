@@ -19,7 +19,9 @@
         console.log(snap.val())
         let users = []
         for (let user in snap.val()) {
-          console.log(snap.val().user)
+          for (let test in snap.val().user) {
+            console.log(test)
+          }
         }
       })
     }
