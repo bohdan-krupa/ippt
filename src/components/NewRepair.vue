@@ -42,34 +42,34 @@
           this.success('Loading...')
 
           firebase.database().ref('users/' + this.uId).once('value', snap => {
-            // let currentData = [...snap.val()]
-            let currentData = snap.val()
-
-            if (!currentData) {
-              currentData = {
-                email: this.email,
-                repairs: [{
-                  country: this.country,
-                  year: this.year,
-                  mark: this.mark
-                }]
-              }
+            let newRepair = {
+                country: this.country,
+                year:    this.year,
+                mark:    this.mark
             }
-            // currentData.push({
-            //   country: this.country,
-            //   year: this.year,
-            //   mark: this.mark
-            // })
 
-            firebase.database().ref('users/' + this.uId).set({
-              ...currentData
-            }).then(() => {
-              this.$router.replace('/client')
-              this.success('Done')
-            },
-            error => {
-              this.error(error.message)
-            })
+            if (!snap.val()) {
+              firebase.database().ref('users/' + this.uId).set({
+                email: this.email,
+                repairs: [newRepair]
+              }).then(() => {
+                this.$router.replace('/client')
+                this.success('Done')
+              },
+              error => {
+                this.error(error.message)
+              })
+            } else {
+              firebase.database().ref('users/' + this.uId + '/repairs').push().set(
+                newRepair
+              ).then(() => {
+                this.$router.replace('/client')
+                this.success('Done')
+              },
+              error => {
+                this.error(error.message)
+              })
+            }
           })
         } else {
           this.warn('Data is incorrect')
