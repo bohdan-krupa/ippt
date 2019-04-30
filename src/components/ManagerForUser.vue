@@ -31,6 +31,7 @@
       }
     },
     created() {
+      this.success('Loading...')
       let client = this.$route.params.client
       
       firebase.database().ref('clients/' + client).once('value', snap => {

@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <p>Clients:</p>
+    <h4>Clients:</h4>
     <router-link
       v-for="(client, index) in clients"
       :to="'/manager/' + client.id"

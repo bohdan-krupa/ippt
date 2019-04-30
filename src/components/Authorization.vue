@@ -26,10 +26,13 @@
   .sign-btn
     position: relative
     left: 50%
-    transform: translateX(-50%)
     margin-top: 25px
-    padding: 5px 8px
+    transform: translateX(-50%)
+    width: calc(100% + 30px)
+    height: 40px
     background-color: lightblue
+    text-align: center
+    line-height: 40px
     border-radius: 20px
     cursor: pointer
 </style>
