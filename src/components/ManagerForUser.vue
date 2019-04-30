@@ -4,6 +4,7 @@
       <h3>User: {{ email }}</h3>
       <h3>Repairs:</h3>
       <div v-for="(machine, index) in machines" :key="index">
+        <hr />
         <h4>Machine:</h4>
         <p>{{ machine.country }}</p>
         <p>{{ machine.year }}</p>
@@ -13,7 +14,7 @@
           class="sign-btn"
         >Set repair type</router-link>
         <!-- <router-link :to="" class="sign-btn">To repair</router-link> -->
-        <hr />
+        <!-- <hr /> -->
       </div>
     </div>
     <BackBtn />
