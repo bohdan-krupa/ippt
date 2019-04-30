@@ -14,7 +14,6 @@
           class="sign-btn"
         >Set repair type</router-link>
         <!-- <router-link :to="" class="sign-btn">To repair</router-link> -->
-        <!-- <hr /> -->
       </div>
     </div>
     <BackBtn />
@@ -45,6 +44,11 @@
         this.machines = []
 
         for (let machine in data.machines) {
+          if (data.machines[machine].repair) {
+            let status = 'Waiting for the client\'s agreement'
+          } else {
+            let status = 'Waiting for the manager'
+          }
           this.machines.push({
             id:      machine,
             country: data.machines[machine].country,
