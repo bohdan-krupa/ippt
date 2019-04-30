@@ -31,7 +31,7 @@
           let data = snap.val()
           let machines = []
           
-          for (machine in data) {
+          for (let machine in data) {
             machines.push(data[machine])
           }
           this.machines = machines
