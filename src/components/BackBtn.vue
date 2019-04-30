@@ -14,11 +14,12 @@
 
 <style lang="sass" scoped>
   div
-    position: absolute
-    left: 25px
-    bottom: 25px
+    // position: absolute
+    // left: 25px
+    // bottom: 25px
     width: 140px
     height: 40px
+    margin: 50px 0 20px 20px
     background-color: lightblue
     text-align: center
     line-height: 40px
