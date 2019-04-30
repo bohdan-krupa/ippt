@@ -9,11 +9,13 @@
       <input v-model="mark" type="text">
       <div @click="onDone" class="sign-btn">Готово</div>
     </div>
+    <BackBtn />
   </div>
 </template>
 
 <script>
   import firebase from 'firebase'
+  import BackBtn from './BackBtn.vue'
   import toast from '../toast.js'
 
   export default {
@@ -75,6 +77,9 @@
           this.error(error.message)
         })
       }
+    },
+    components: {
+      BackBtn
     }
   }
 </script>

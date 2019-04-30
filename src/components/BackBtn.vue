@@ -19,7 +19,7 @@
     // bottom: 25px
     width: 140px
     height: 40px
-    margin: 50px 0 20px 20px
+    margin: 50px 0 30px 25px
     background-color: lightblue
     text-align: center
     line-height: 40px
