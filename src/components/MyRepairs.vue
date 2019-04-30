@@ -9,9 +9,10 @@
         <p>Status: {{ getStatus(machine) }}</p>
         <div v-if="machine.repair">
           <p>Repair name: {{ machine.repair.name }}</p>
-          <p>Repair duration: {{ machine.repair.duration }}</p>
-          <p>Repair price: {{ machine.repair.price }}</p>
-          <p>Repair notes: {{ machine.repair.notes }}</p>
+          <p>Duration: {{ machine.repair.duration }} days</p>
+          <p>Price: {{ machine.repair.price }}$</p>
+          <p v-if="machine.repair.notes">Notes: {{ machine.repair.notes }}</p>
+          <div class="sign-btn">Agree</div>
         </div>
         <hr />
       </div>
