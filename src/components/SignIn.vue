@@ -1,10 +1,12 @@
 <template>
   <div class="container">
+    <form>
       <p>Email</p>
       <input v-model="email" type="text">
       <p>Password</p>
       <input v-model="password" type="password">
       <div @click="onSignIn" class="sign-btn">Sign in</div>
+    </form>
   </div>
 </template>
 
