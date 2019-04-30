@@ -2,17 +2,18 @@
   <div>
     <div class="container">
       <h3>User: {{ email }}</h3>
-      <p>Repairs:</p>
+      <h3>Repairs:</h3>
       <div v-for="(machine, index) in machines" :key="index">
-        <p>Machine:</p>
-        <h4>{{ machine.country }}</h4>
-        <h4>{{ machine.year }}</h4>
-        <h4>{{ machine.mark }}</h4>
+        <h4>Machine:</h4>
+        <p>{{ machine.country }}</p>
+        <p>{{ machine.year }}</p>
+        <p>{{ machine.mark }}</p>
         <router-link
           :to="'/set-repair-type/' + $route.params.client + '/' + machine.id"
           class="sign-btn"
         >Set repair type</router-link>
         <!-- <router-link :to="" class="sign-btn">To repair</router-link> -->
+        <hr />
       </div>
     </div>
     <BackBtn />
