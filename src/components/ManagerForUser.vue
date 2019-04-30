@@ -11,6 +11,9 @@
         <p>Mark: {{ machine.mark }}</p>
         <div v-if="machine.repair">
           <p>Repait name: {{ machine.repair.name }}</p>
+          <p>Duration: {{ machine.repair.duration }}</p>
+          <p>Price: {{ machine.repair.price }}</p>
+          <p v-if="machine.repair.notes">Notes: {{ machine.repair.notes }}</p>
         </div>
         <router-link
           :to="'/set-repair-type/' + $route.params.client + '/' + machine.id"
