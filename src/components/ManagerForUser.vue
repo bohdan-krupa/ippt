@@ -53,7 +53,8 @@
             id:      machine,
             country: data.machines[machine].country,
             year:    data.machines[machine].year,
-            mark:    data.machines[machine].mark
+            mark:    data.machines[machine].mark,
+            status
           })
         }
       })
