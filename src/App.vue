@@ -18,9 +18,6 @@
     position: relative
     margin: 100px auto 0 auto
     width: max-content
-    // top: 50%
-    // left: 50%
-    // transform: translate(-50%, -50%)
 
   h1
     text-align: center
