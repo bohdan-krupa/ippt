@@ -5,9 +5,7 @@
       <h4>{{ machine.country }}</h4>
       <h4>{{ machine.year }}</h4>
       <h4>{{ machine.mark }}</h4>
-
       <hr>
-
       <p>* Repair name:</p>
       <input v-model="repair.name" type="text">
       <p>* Duration (days):</p>
