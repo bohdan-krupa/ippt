@@ -9,6 +9,7 @@
         <p>{{ machine.country }}</p>
         <p>{{ machine.year }}</p>
         <p>{{ machine.mark }}</p>
+        <div v-if="ma"></div>
         <router-link
           :to="'/set-repair-type/' + $route.params.client + '/' + machine.id"
           class="sign-btn"
@@ -44,16 +45,18 @@
         this.machines = []
 
         for (let machine in data.machines) {
+          let status
           if (data.machines[machine].repair) {
-            let status = 'Waiting for the client\'s agreement'
+            status = 'Waiting for the client\'s agreement'
           } else {
-            let status = 'Waiting for the manager'
+            status = 'Waiting for the manager'
           }
           this.machines.push({
             id:      machine,
             country: data.machines[machine].country,
             year:    data.machines[machine].year,
             mark:    data.machines[machine].mark,
+            repair:  data.machines[machine].repair,
             status
           })
         }
