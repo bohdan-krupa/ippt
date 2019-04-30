@@ -1,5 +1,5 @@
 <template>
-  <div @click="onBack" class="right-bottom-btn">Back</div>
+  <div @click="onBack" id="right-bottom-btn">Back</div>
 </template>
 
 <script>
@@ -13,7 +13,7 @@
 </script>
 
 <style lang="sass">
-  .right-bottom-btn
+  #right-bottom-btn
     width: 140px
     height: 40px
     margin: 50px 0 30px 25px
