@@ -9,7 +9,6 @@
       <input v-model="mark" type="text">
       <div @click="onDone" class="sign-btn">Готово</div>
     </div>
-    <div @click="onBack" class="bottom-right-btn">Back</div>
   </div>
 </template>
 
@@ -75,9 +74,6 @@
         error => {
           this.error(error.message)
         })
-      },
-      onBack() {
-        this.$router.go(-1)
       }
     }
   }
