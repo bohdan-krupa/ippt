@@ -14,9 +14,6 @@
 
 <style lang="sass" scoped>
   div
-    // position: absolute
-    // left: 25px
-    // bottom: 25px
     width: 140px
     height: 40px
     margin: 50px 0 30px 25px

@@ -6,7 +6,9 @@
       <h4>{{ machine.year }}</h4>
       <h4>{{ machine.mark }}</h4>
 
-      <p>* Name:</p>
+      <hr>
+
+      <p>* Repair name:</p>
       <input v-model="repair.name" type="text">
       <p>* Duration (days):</p>
       <input v-model="repair.duration" type="number">
@@ -14,7 +16,7 @@
       <input v-model="repair.price" type="number">
       <p>Notes:</p>
       <input v-model="repair.notes" type="text">
-      <div @click="onSetRepairType" class="sign-btn">Готово</div>
+      <div @click="onSetRepairType" class="sign-btn">Done</div>
     </div>
     <BackBtn />
   </div>
