@@ -2,9 +2,9 @@
   <div class="container">
     <form>
       <p>Email</p>
-      <input v-model="email" type="text" autocomplete="username">
+      <input v-model="email" type="email">
       <p>Password</p>
-      <input v-model="password" type="password" autocomplete="current-password">
+      <input v-model="password" type="password">
       <div @click="onSignIn" class="sign-btn">Sign in</div>
     </form>
   </div>

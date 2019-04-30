@@ -1,13 +1,15 @@
 <template>
 	<div class="container">
     <div v-if="!loading">
-      <p>Email</p>
-      <input v-model="email" :class="{ green: isGood.email }" type="text">
-      <p>Password</p>
-      <input v-model="password" :class="{ green: isGood.password }" type="password">
-      <p>Password once again</p>
-      <input v-model="password2" :class="{ green: isGood.password2 }" type="password">
-      <div @click="onSignUp" class="sign-btn">Sign up</div>
+      <form>
+        <p>Email</p>
+        <input v-model="email" :class="{ green: isGood.email }" type="email">
+        <p>Password</p>
+        <input v-model="password" :class="{ green: isGood.password }" type="password">
+        <p>Password once again</p>
+        <input v-model="password2" :class="{ green: isGood.password2 }" type="password">
+        <div @click="onSignUp" class="sign-btn">Sign up</div>
+      </form>
     </div>
     <div v-if="loading">
       <h3>Loading...</h3>
