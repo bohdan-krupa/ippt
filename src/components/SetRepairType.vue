@@ -47,7 +47,6 @@
       this.machineId = this.$route.params.machine
 
       let dbRef = 'clients/' + this.clientId + '/machines/' + this.machineId
-
       firebase.database().ref(dbRef).once('value', snap => {
         this.machine = snap.val()
       })
@@ -55,8 +54,9 @@
     methods: {
       onSetRepairType() {
         if (this.repair.name && this.repair.duration && this.repair.price) {
-          let dbRef = 'clients/' + this.clientId + '/machines/' + this.machineId + '/repair'
+          this.success('Loading...')
 
+          let dbRef = 'clients/' + this.clientId + '/machines/' + this.machineId + '/repair'
           firebase.database().ref(dbRef).set(
             this.repair
           ).then(() => {
@@ -65,6 +65,8 @@
           error => {
             this.error(error.message)
           })
+        } else {
+          this.error('Incorrect data')
         }
       }
     },
