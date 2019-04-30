@@ -57,12 +57,9 @@
         if (this.repair.name && this.repair.duration && this.repair.price) {
           let dbRef = 'clients/' + this.clientId + '/machines/' + this.machineId + '/repair'
 
-          firebase.database().ref(dbRef).set({
-            name:     this.repair.name,
-            duration: this.repair.duration,
-            price:    this.repair.price,
-            notes:    this.repair.notes
-          }).then(() => {
+          firebase.database().ref(dbRef).set(
+            this.repair
+          ).then(() => {
             this.success('Done')
           },
           error => {
