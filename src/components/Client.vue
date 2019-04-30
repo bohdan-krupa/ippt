@@ -4,7 +4,7 @@
       <router-link to="/client/new-repair" class="sign-btn">Ask for repair</router-link>
       <router-link to="/client/my-repairs" class="sign-btn">My tasks</router-link>
     </div>
-    <div @click="onSignOut" class="bottom-right-btn">Sign out</div>
+    <div @click="onSignOut" class="right-bottom-btn">Sign out</div>
   </div>
 </template>
 
