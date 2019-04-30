@@ -6,11 +6,11 @@
       <div v-for="(machine, index) in machines" :key="index">
         <hr />
         <h4>Machine:</h4>
-        <p>{{ machine.country }}</p>
-        <p>{{ machine.year }}</p>
-        <p>{{ machine.mark }}</p>
+        <p>Country: {{ machine.country }}</p>
+        <p>Year: {{ machine.year }}</p>
+        <p>Mark: {{ machine.mark }}</p>
         <div v-if="machine.repair">
-          sfg
+          <p>Repait name: {{ machine.repair.name }}</p>
         </div>
         <router-link
           :to="'/set-repair-type/' + $route.params.client + '/' + machine.id"
