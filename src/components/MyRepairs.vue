@@ -2,10 +2,11 @@
   <div>
     <div class="container">
       <div v-for="(machine, index) in machines" :key="index">
-        <p>Machine:</p>
-        <h4>{{ machine.country }}</h4>
-        <h4>{{ machine.year }}</h4>
-        <h4>{{ machine.mark }}</h4>
+        <h4>Machine:</h4>
+        <p>{{ machine.country }}</p>
+        <p>{{ machine.year }}</p>
+        <p>{{ machine.mark }}</p>
+        <hr />
       </div>
     </div>
     <BackBtn />
