@@ -29,6 +29,10 @@
       firebase.database().ref('clients/' + client).once('value', snap => {
         let data = snap.val()
 
+        for (let machine in data.machines) {
+          console.log(data.machines[machine])
+        }
+
         this.machines = data.machines
         this.email = data.email
       })
