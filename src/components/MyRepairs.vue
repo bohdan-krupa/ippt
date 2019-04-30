@@ -8,12 +8,13 @@
         <h4>{{ machine.mark }}</h4>
       </div>
     </div>
-    <div @click="onBack" class="bottom-right-btn">Back</div>
+    <BackBtn />
   </div>
 </template>
 
 <script>
   import firebase from 'firebase'
+  import BackBtn from './BackBtn.vue'
   import toast from '../toast.js'
 
   export default {
@@ -40,10 +41,8 @@
         })
       })
     },
-    methods: {
-      onBack() {
-        this.$router.go(-1)
-      }
+    components: {
+      BackBtn
     }
   }
 </script>
