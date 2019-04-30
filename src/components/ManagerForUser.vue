@@ -9,7 +9,9 @@
         <p>{{ machine.country }}</p>
         <p>{{ machine.year }}</p>
         <p>{{ machine.mark }}</p>
-        <div v-if="ma"></div>
+        <div v-if="machine.repair">
+          sfg
+        </div>
         <router-link
           :to="'/set-repair-type/' + $route.params.client + '/' + machine.id"
           class="sign-btn"
