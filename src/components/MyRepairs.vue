@@ -7,6 +7,12 @@
         <p>Year: {{ machine.year }}</p>
         <p>Mark: {{ machine.mark }}</p>
         <p>Status: {{ getStatus(machine) }}</p>
+        <div v-if="machine.repair">
+          <p>Repair name: {{ machine.repair.name }}</p>
+          <p>Repair duration: {{ machine.repair.duration }}</p>
+          <p>Repair price: {{ machine.repair.price }}</p>
+          <p>Repair notes: {{ machine.repair.notes }}</p>
+        </div>
         <hr />
       </div>
     </div>
