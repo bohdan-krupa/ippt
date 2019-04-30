@@ -16,7 +16,7 @@
 
   .container
     position: relative
-    margin: 0 auto
+    margin: 100px auto 0 auto
     width: max-content
     // top: 50%
     // left: 50%
