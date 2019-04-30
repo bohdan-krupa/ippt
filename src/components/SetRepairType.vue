@@ -46,16 +46,18 @@
       this.clientId = this.$route.params.client
       this.machineId = this.$route.params.machine
 
-      let dbRef = firebase.database().ref('clients/' + this.clientId + '/machines/' + this.machineId)
+      let dbRef = 'clients/' + this.clientId + '/machines/' + this.machineId
 
-      dbRef.once('value', snap => {
+      firebase.database().ref(dbRef).once('value', snap => {
         this.machine = snap.val()
       })
     },
     methods: {
       onSetRepairType() {
         if (this.repair.name && this.repair.duration && this.repair.price) {
-          firebase.database().ref('clients/' + this.clientId + '/repairs').push().set({
+          let dbRef = 'clients/' + this.clientId + '/machines/' + this.machineId + '/repair'
+
+          firebase.database().ref(dbRef).set({
             name:     this.repair.name,
             duration: this.repair.duration,
             price:    this.repair.price,
