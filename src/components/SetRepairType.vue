@@ -23,8 +23,8 @@
   export default {
     data() {
       return {
-        client:  null,
-        machine: null,
+        clientId:  null,
+        machineId: null,
         machine: {
           country: null,
           year:    null,
@@ -39,17 +39,19 @@
       }
     },
     created() {
-      this.client = this.$route.params.client
-      this.machine = this.$route.params.machine
+      this.clientId = this.$route.params.client
+      this.machineId = this.$route.params.machine
 
-      firebase.database().ref('clients/' + this.client + '/machines/' + machine).once('value', snap => {
+      let dbRef = firebase.database().ref('clients/' + this.clientId + '/machines/' + this.machineId)
+      
+      dbRef.once('value', snap => {
         this.machine = snap.val()
       })
     },
     methods: {
       onSetRepairType() {
         if (this.repair.name && this.repair.duration && this.repair.price) {
-          firebase.database().ref('clients/' + this.client + '/repairs').push().set({
+          firebase.database().ref('clients/' + this.clientId + '/repairs').push().set({
             name:     this.repair.name,
             duration: this.repair.duration,
             price:    this.repair.price,
