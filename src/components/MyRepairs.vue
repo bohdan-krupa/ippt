@@ -3,9 +3,10 @@
     <div class="container">
       <div v-for="(machine, index) in machines" :key="index">
         <h4>Machine:</h4>
-        <p>{{ machine.country }}</p>
-        <p>{{ machine.year }}</p>
-        <p>{{ machine.mark }}</p>
+        <p>Country: {{ machine.country }}</p>
+        <p>Year: {{ machine.year }}</p>
+        <p>Mark: {{ machine.mark }}</p>
+        <p>Status: {{ getStatus(machine) }}</p>
         <hr />
       </div>
     </div>
@@ -41,6 +42,11 @@
           this.success('Done')
         })
       })
+    },
+    methods: {
+      getStatus(machine) {
+        return !machine.repair ? 'Waiting for the manager' : 'Processed'
+      }
     },
     components: {
       BackBtn
