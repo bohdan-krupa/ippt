@@ -9,10 +9,11 @@
         <p>Country: {{ machine.country }}</p>
         <p>Year: {{ machine.year }}</p>
         <p>Mark: {{ machine.mark }}</p>
+        <p>Status: {{ machine.status }}</p>
         <div v-if="machine.repair">
           <p>Repait name: {{ machine.repair.name }}</p>
-          <p>Duration: {{ machine.repair.duration }}</p>
-          <p>Price: {{ machine.repair.price }}</p>
+          <p>Duration: {{ machine.repair.duration }} days</p>
+          <p>Price: {{ machine.repair.price }}$</p>
           <p v-if="machine.repair.notes">Notes: {{ machine.repair.notes }}</p>
         </div>
         <router-link
