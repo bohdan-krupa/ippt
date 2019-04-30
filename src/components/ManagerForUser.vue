@@ -22,12 +22,12 @@
       }
     },
     created() {
-      let id = this.$route.params.id
+      let client = this.$route.params.client
       
-      firebase.database().ref('clients' + id).once('value', snap => {
+      firebase.database().ref('clients/' + client).once('value', snap => {
         let data = snap.val()
 
-        this.machines = data.repairs
+        this.machines = data.machines
         this.email = data.email
       })
     }
