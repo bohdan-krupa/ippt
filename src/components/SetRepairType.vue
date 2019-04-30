@@ -1,24 +1,28 @@
 <template>
-  <div class="container">
-    <p>Machine:</p>
-    <h4>{{ machine.country }}</h4>
-    <h4>{{ machine.year }}</h4>
-    <h4>{{ machine.mark }}</h4>
+  <div>
+    <div class="container">
+      <p>Machine:</p>
+      <h4>{{ machine.country }}</h4>
+      <h4>{{ machine.year }}</h4>
+      <h4>{{ machine.mark }}</h4>
 
-    <p>* Name:</p>
-    <input v-model="repair.name" type="text">
-    <p>* Duration (days):</p>
-    <input v-model="repair.duration" type="number">
-    <p>* Price ($):</p>
-    <input v-model="repair.price" type="number">
-    <p>Notes:</p>
-    <input v-model="repair.notes" type="text">
-    <div @click="onSetRepairType" class="sign-btn">Готово</div>
+      <p>* Name:</p>
+      <input v-model="repair.name" type="text">
+      <p>* Duration (days):</p>
+      <input v-model="repair.duration" type="number">
+      <p>* Price ($):</p>
+      <input v-model="repair.price" type="number">
+      <p>Notes:</p>
+      <input v-model="repair.notes" type="text">
+      <div @click="onSetRepairType" class="sign-btn">Готово</div>
+    </div>
+    <BackBtn />
   </div>
 </template>
 
 <script>
   import firebase from 'firebase'
+  import BackBtn from './BackBtn.vue'
 
   export default {
     data() {
@@ -43,7 +47,7 @@
       this.machineId = this.$route.params.machine
 
       let dbRef = firebase.database().ref('clients/' + this.clientId + '/machines/' + this.machineId)
-      
+
       dbRef.once('value', snap => {
         this.machine = snap.val()
       })
@@ -64,6 +68,9 @@
           })
         }
       }
+    },
+    components: {
+      BackBtn
     }
   }
 </script>
