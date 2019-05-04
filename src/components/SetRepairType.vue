@@ -28,7 +28,7 @@
     data() {
       return {
         clientId:  null,
-        machineId: null,
+        repaire: null,
         machine: {
           country: null,
           year:    null,
@@ -44,9 +44,9 @@
     },
     created() {
       this.clientId = this.$route.params.client
-      this.machineId = this.$route.params.machine
+      this.repaire = this.$route.params.repaire
 
-      let dbRef = 'clients/' + this.clientId + '/machines/' + this.machineId
+      let dbRef = 'clients/' + this.clientId + '/repaires/' + this.repaire
       firebase.database().ref(dbRef).once('value', snap => {
         this.machine = snap.val()
       })
@@ -56,7 +56,7 @@
         if (this.repair.name && this.repair.duration && this.repair.price) {
           this.success('Loading...')
 
-          let dbRef = 'clients/' + this.clientId + '/machines/' + this.machineId + '/repair'
+          let dbRef = 'clients/' + this.clientId + '/machines/' + this.repaire + '/repair'
           firebase.database().ref(dbRef).set(
             this.repair
           ).then(() => {
