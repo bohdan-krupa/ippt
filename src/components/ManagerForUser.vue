@@ -41,7 +41,6 @@
     },
     mixins: [toast],
     created() {
-      this.dateDiff('2019.05.01', 3)
       this.success('Loading...')
       let clientId = this.$route.params.clientId
 
@@ -53,16 +52,21 @@
 
         for (let repairId in data.repaires) {
           let status
+          let repair = data.repaires[repairId]
 
-          if (data.repaires[repairId].startDate) {
-            // if (dateDiff('02.04.2019', 1)) {}
-          }
-
-          if (data.repaires[repairId].repair) {
+          if (repair.startDate) {
+            let isRepaired = this.dateDiff(
+              repair.startDate, repair.repairType.duration
+            )
+            status = isRepaired ? 'Repaired' : 'Now being repaired'
+          } else if (repair.repairType.isAgreed) {
+            status = 'Agreed'
+          } else if (repair.repairType) {
             status = 'Waiting for the client\'s agreement'
           } else {
-            status = 'Waiting for the manager'
+            status = 'Waiting for the repair type'
           }
+
           this.repaires.push({
             id:      repairId,
             country: data.repaires[repairId].country,
@@ -76,13 +80,12 @@
     },
     methods: {
       dateDiff(startDate, daysOfRepair) {
-        let date1 = new Date(startDate)
+        startDate = new Date(startDate)
         let daysAgo = (
-          Date.now() - Date.UTC(date1.getFullYear(), date1.getMonth(), date1.getDate())
+          Date.now() - Date.UTC(startDate.getFullYear(), startDate.getMonth(), startDate.getDate())
         ) / (1000 * 60 * 60 * 24)
-        console.log(
-          daysAgo > daysOfRepair
-        )
+
+        return daysAgo > daysOfRepair
       }
     },
     components: {
