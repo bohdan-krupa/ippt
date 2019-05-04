@@ -21,12 +21,12 @@
   export default {
     data() {
       return {
+        uId:     null,
+        email:   null,
+
         country: null,
         year:    null,
-        mark:    null,
-
-        uId:     null,
-        email:   null
+        mark:    null
       }
     },
     mixins: [toast],
@@ -42,13 +42,13 @@
         if (this.country && this.year && this.mark) {
           this.success('Loading...')
 
-          firebase.database().ref('clients/' + this.uId).once('value', snap => {
-            let newRepair = {
-                country: this.country,
-                year:    this.year,
-                mark:    this.mark
-            }
+          let newRepair = {
+            country: this.country,
+            year:    this.year,
+            mark:    this.mark
+          }
 
+          firebase.database().ref('clients/' + this.uId).once('value', snap => {
             if (!snap.val()) {
               firebase.database().ref('clients/' + this.uId).set({
                 email: this.email,
@@ -67,7 +67,7 @@
         }
       },
       pushRepair(repair) {
-        firebase.database().ref('clients/' + this.uId + '/machines').push().set(
+        firebase.database().ref('clients/' + this.uId + '/repaires/machineType').push().set(
           repair
         ).then(() => {
           this.$router.replace('/client')
