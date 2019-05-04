@@ -77,7 +77,7 @@
     methods: {
       dateDiff(startDate, days) {
         let date1 = new Date(startDate)
-        console.log(Date.UTC(date1.getFullYear(), date1.getMonth(), date1.getDate()), days)
+        console.log(Date.UTC(date1.getFullYear(), date1.getMonth(), date1.getDate()) / (1000 * 60 * 60 * 24) - days)
       }
     },
     components: {
