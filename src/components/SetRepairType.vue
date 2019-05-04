@@ -28,13 +28,13 @@
     data() {
       return {
         clientId:  null,
-        repaire: null,
-        machine: {
+        repairId: null,
+        machineType: {
           country: null,
           year:    null,
           mark:    null
         },
-        repair: {
+        repairType: {
           name:     null,
           duration: null,
           price:    null,
@@ -43,22 +43,22 @@
       }
     },
     created() {
-      this.clientId = this.$route.params.client
-      this.repaire = this.$route.params.repaire
+      this.clientId = this.$route.params.clientId
+      this.repairId = this.$route.params.repairId
 
-      let dbRef = 'clients/' + this.clientId + '/repaires/' + this.repaire
+      let dbRef = 'clients/' + this.clientId + '/repaires/' + this.repairId + '/machineType'
       firebase.database().ref(dbRef).once('value', snap => {
-        this.machine = snap.val()
+        this.machineType = snap.val()
       })
     },
     methods: {
       onSetRepairType() {
-        if (this.repair.name && this.repair.duration && this.repair.price) {
+        if (this.repairType.name && this.repairType.duration && this.repairType.price) {
           this.success('Loading...')
 
-          let dbRef = 'clients/' + this.clientId + '/machines/' + this.repaire + '/repair'
+          let dbRef = 'clients/' + this.clientId + '/repaires/' + this.repairId + '/repairType'
           firebase.database().ref(dbRef).set(
-            this.repair
+            this.repairType
           ).then(() => {
             this.success('Done')
           },

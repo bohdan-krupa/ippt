@@ -12,6 +12,7 @@
 
 <script>
   import firebase from 'firebase'
+  import toast from '../toast.js'
 
   export default {
     data() {
@@ -20,6 +21,8 @@
       }
     },
     created() {
+      this.success('Loading...')
+
       firebase.database().ref('clients').once('value', snap => {
         let clients = snap.val()
         let currentData = []
@@ -32,7 +35,9 @@
         }
 
         this.clients = currentData
+        this.success('Done')
       })
-    }
+    },
+    mixins: [toast]
   }
 </script>
