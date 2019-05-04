@@ -42,7 +42,7 @@
         if (this.country && this.year && this.mark) {
           this.success('Loading...')
 
-          let newRepair = {
+          let machineType = {
             country: this.country,
             year:    this.year,
             mark:    this.mark
@@ -53,22 +53,23 @@
               firebase.database().ref('clients/' + this.uId).set({
                 email: this.email,
               }).then(() => {
-                this.pushRepair(newRepair)
+                this.pushRepair(machineType)
               },
               error => {
                 this.error(error.message)
               })
             } else {
-              this.pushRepair(newRepair)
+              this.pushRepair(machineType)
             }
           })
         } else {
           this.warn('Data is incorrect')
         }
       },
-      pushRepair(repair) {
-        firebase.database().ref('clients/' + this.uId + '/repaires/machineType').push().set(
-          repair
+      pushRepair(machineType) {
+        firebase.database().ref('clients/' + this.uId + '/repaires').push().set({
+          machineType
+        }
         ).then(() => {
           this.$router.replace('/client')
           this.success('Done')
