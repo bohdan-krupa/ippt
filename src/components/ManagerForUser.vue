@@ -41,7 +41,7 @@
     },
     mixins: [toast],
     created() {
-      this.dateDiff('02.04.2019', 1)
+      this.dateDiff('05.02.2019', 1)
       this.success('Loading...')
       let clientId = this.$route.params.clientId
 
@@ -77,7 +77,11 @@
     methods: {
       dateDiff(startDate, days) {
         let date1 = new Date(startDate)
-        console.log(Date.UTC(date1.getFullYear(), date1.getMonth(), date1.getDate()) / (1000 * 60 * 60 * 24) - days)
+        let date2 = new Date()
+        console.log(
+          Date.now() / (1000 * 60 * 60 * 24) -
+          Date.UTC(date1.getFullYear(), date1.getMonth(), date1.getDate()) / (1000 * 60 * 60 * 24)
+        )
       }
     },
     components: {
