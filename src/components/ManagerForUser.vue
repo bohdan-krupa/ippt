@@ -3,7 +3,7 @@
     <div class="container">
       <h3>User: {{ email }}</h3>
       <h3>Repairs:</h3>
-      <div v-for="(machine, index) in machines" :key="index">
+      <div v-for="(machine, index) in repaires" :key="index">
         <hr />
         <h4>Machine:</h4>
         <p>Country: {{ machine.country }}</p>
@@ -35,38 +35,50 @@
   export default {
     data() {
       return {
-        machines: [],
+        repaires: [],
         email:    null
       }
     },
     mixins: [toast],
     created() {
+      dateDiff('02.04.2019', 1)
       this.success('Loading...')
-      let client = this.$route.params.client
-      
-      firebase.database().ref('clients/' + client).once('value', snap => {
+      let clientId = this.$route.params.clientId
+
+      firebase.database().ref('clients/' + clientId).once('value', snap => {
         let data = snap.val()
 
         this.email = data.email
-        this.machines = []
+        // DONE!
 
-        for (let machine in data.machines) {
+        for (let repairId in data.repaires) {
           let status
-          if (data.machines[machine].repair) {
+
+          if (data.repaires[repairId].startDate) {
+            // if (dateDiff('02.04.2019', 1)) {}
+          }
+
+          if (data.repaires[repairId].repair) {
             status = 'Waiting for the client\'s agreement'
           } else {
             status = 'Waiting for the manager'
           }
-          this.machines.push({
-            id:      machine,
-            country: data.machines[machine].country,
-            year:    data.machines[machine].year,
-            mark:    data.machines[machine].mark,
-            repair:  data.machines[machine].repair,
+          this.repaires.push({
+            id:      repairId,
+            country: data.repaires[repairId].country,
+            year:    data.repaires[repairId].year,
+            mark:    data.repaires[repairId].mark,
+            repair:  data.repaires[repairId].repair,
             status
           })
         }
       })
+    },
+    methods: {
+      dateDiff(startDate, days) {
+        let date1 = new Date(startDate)
+        console.log(Date.UTC(date1.getYear, date1.getMonth, date1.getDate))
+      }
     },
     components: {
       BackBtn
