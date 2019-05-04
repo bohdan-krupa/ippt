@@ -10,6 +10,7 @@
 
 <script>
   import firebase from 'firebase'
+  import toast from '../toast.js'
 
   export default {
     data() {
@@ -17,21 +18,16 @@
         
       }
     },
+    mixins: [toast],
     methods: {
       onSignOut() {
         firebase.auth().signOut().then(() => {
-         this.$notify({
-            title: 'You are logged out',
-            type: 'success'
-          })
+          this.success('You are logged out')
 
           this.$router.replace('/')
         },
         error => {
-          this.$notify({
-            title: error.message,
-            type: 'error'
-          })
+          this.error(error.message)
         })
       }
     }
