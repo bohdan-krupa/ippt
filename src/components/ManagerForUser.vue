@@ -49,8 +49,6 @@
         let data = snap.val()
 
         this.email = data.email
-      console.log(data.email)
-
 
         for (let repairId in data.repaires) {
           let status
