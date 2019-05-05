@@ -51,29 +51,28 @@
         this.email = data.email
 
         for (let repairId in data.repaires) {
-          let status
-          let repair = data.repaires[repairId]
+          // let status
+          // let repair = data.repaires[repairId]
 
-          if (repair.startDate) {
-            let isRepaired = this.dateDiff(
-              repair.startDate, repair.repairType.duration
-            )
-            status = isRepaired ? 'Repaired' : 'Now being repaired'
-          } else if (repair.repairType.isAgreed) {
-            status = 'Agreed'
-          } else if (repair.repairType) {
-            status = 'Waiting for the client\'s agreement'
-          } else {
-            status = 'Waiting for the repair type'
-          }
+          // if (repair.startDate) {
+          //   let isRepaired = this.dateDiff(
+          //     repair.startDate, repair.repairType.duration
+          //   )
+          //   status = isRepaired ? 'Repaired' : 'Now being repaired'
+          // } else if (repair.repairType.isAgreed) {
+          //   status = 'Agreed'
+          // } else if (repair.repairType) {
+          //   status = 'Waiting for the client\'s agreement'
+          // } else {
+          //   status = 'Waiting for the repair type'
+          // }
 
           this.repaires.push({
             repairId,
-            status,
+            // status,
             ...data.repaires[repairId]
           })
         }
-
 
         this.success('Done')
       })
