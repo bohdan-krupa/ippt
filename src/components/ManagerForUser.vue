@@ -5,11 +5,11 @@
       <h3>Repairs:</h3>
       <div v-for="(repair, index) in repaires" :key="index">
         <hr />
+        <p><h4>Status:</h4> {{ repair.status }}</p>
         <h4>Machine Type:</h4>
         <p>Country: {{ repair.machineType.country }}</p>
         <p>Year: {{ repair.machineType.year }}</p>
         <p>Mark: {{ repair.machineType.mark }}</p>
-        <p>Status: {{ repair.status }}</p>
         <div v-if="repair.repairType">
           <p>Repait name: {{ repair.repairType.name }}</p>
           <p>Duration: {{ repair.repairType.duration }} days</p>
@@ -17,7 +17,7 @@
           <p v-if="repair.repairType.notes">Notes: {{ repair.repairType.notes }}</p>
         </div>
         <router-link
-          :to="'/set-repair-type/' + $route.params.client + '/' + machine.id"
+          :to="'/set-repair-type/' + $route.params.clientId + '/' + repair.repairId"
           class="sign-btn"
         >Set repair type</router-link>
         <!-- <router-link :to="" class="sign-btn">To repair</router-link> -->
@@ -49,7 +49,7 @@
 
         this.email = data.email
       console.log(data.email)
-        
+
 
         for (let repairId in data.repaires) {
           let status
@@ -69,7 +69,7 @@
           }
 
           this.repaires.push({
-            id:     repairId,
+            repairId,
             status,
             ...data.repaires[repairId]
           })
