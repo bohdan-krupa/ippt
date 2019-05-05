@@ -22,6 +22,11 @@
           :to="'/set-repair-type/' + $route.params.clientId + '/' + repair.repairId"
           class="sign-btn"
         >Set repair type</router-link>
+        <router-link
+          v-if="repair.status == 'Waiting for the client\'s agreement'"
+          :to="'/set-repair-type/' + $route.params.clientId + '/' + repair.repairId"
+          class="sign-btn"
+        >Edit repair type</router-link>
         <!-- <router-link :to="" class="sign-btn">To repair</router-link> -->
       </div>
     </div>
