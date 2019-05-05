@@ -44,6 +44,13 @@
       this.success('Loading...')
       let clientId = this.$route.params.clientId
 
+      let sf = {
+        sm: 1,
+        LG: 2
+      }
+
+      console.log(sf.sm)
+
       firebase.database().ref('clients/' + clientId).once('value', snap => {
         let data = snap.val()
 
