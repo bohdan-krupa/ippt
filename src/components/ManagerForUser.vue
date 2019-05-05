@@ -3,12 +3,12 @@
     <div class="container">
       <h3>User: {{ email }}</h3>
       <h3>Repairs:</h3>
-      <div v-for="(machine, index) in repaires" :key="index">
+      <div v-for="(repair, index) in repaires" :key="index">
         <hr />
-        <h4>Machine:</h4>
-        <p>Country: {{ machine.country }}</p>
-        <p>Year: {{ machine.year }}</p>
-        <p>Mark: {{ machine.mark }}</p>
+        <h4>Machine Type:</h4>
+        <p>Country: {{ repair.machineType.country }}</p>
+        <p>Year: {{ repair.machineType.year }}</p>
+        <p>Mark: {{ repair.machineType.mark }}</p>
         <p>Status: {{ machine.status }}</p>
         <div v-if="machine.repair">
           <p>Repait name: {{ machine.repair.name }}</p>
@@ -42,20 +42,12 @@
     mixins: [toast],
     created() {
       this.success('Loading...')
-      let clientId = this.$route.params.clientId
-
-      let sf = {
-        sm: 1,
-        LG: 2
-      }
-
-      console.log(sf.sm)
+      const clientId = this.$route.params.clientId
 
       firebase.database().ref('clients/' + clientId).once('value', snap => {
         let data = snap.val()
 
         this.email = data.email
-        // DONE!
 
         for (let repairId in data.repaires) {
           let status
@@ -75,14 +67,19 @@
           }
 
           this.repaires.push({
-            id:      repairId,
-            country: data.repaires[repairId].country,
-            year:    data.repaires[repairId].year,
-            mark:    data.repaires[repairId].mark,
-            repair:  data.repaires[repairId].repair,
-            status
+            id:     repairId,
+            status,
+            ...data.repaires[repairId]
+          })
+          console.log({
+            id:     repairId,
+            status,
+            ...data.repaires[repairId]
           })
         }
+
+
+        this.success('Done')
       })
     },
     methods: {
