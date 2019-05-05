@@ -9,12 +9,12 @@
         <p>Country: {{ repair.machineType.country }}</p>
         <p>Year: {{ repair.machineType.year }}</p>
         <p>Mark: {{ repair.machineType.mark }}</p>
-        <p>Status: {{ machine.status }}</p>
-        <div v-if="machine.repair">
-          <p>Repait name: {{ machine.repair.name }}</p>
-          <p>Duration: {{ machine.repair.duration }} days</p>
-          <p>Price: {{ machine.repair.price }}$</p>
-          <p v-if="machine.repair.notes">Notes: {{ machine.repair.notes }}</p>
+        <p>Status: {{ repair.status }}</p>
+        <div v-if="repair.repairType">
+          <p>Repait name: {{ repair.repairType.name }}</p>
+          <p>Duration: {{ repair.repairType.duration }} days</p>
+          <p>Price: {{ repair.repairType.price }}$</p>
+          <p v-if="repair.repairType.notes">Notes: {{ repair.repairType.notes }}</p>
         </div>
         <router-link
           :to="'/set-repair-type/' + $route.params.client + '/' + machine.id"
@@ -42,7 +42,7 @@
     mixins: [toast],
     created() {
       this.success('Loading...')
-      const clientId = this.$route.params.clientId
+      let clientId = this.$route.params.clientId
 
       firebase.database().ref('clients/' + clientId).once('value', snap => {
         let data = snap.val()
