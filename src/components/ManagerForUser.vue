@@ -18,6 +18,7 @@
           <p v-if="repair.repairType.notes">Notes: {{ repair.repairType.notes }}</p>
         </div>
         <router-link
+          v-if="repair.status == 'Waiting for the repair type'"
           :to="'/set-repair-type/' + $route.params.clientId + '/' + repair.repairId"
           class="sign-btn"
         >Set repair type</router-link>
@@ -51,25 +52,8 @@
         this.email = data.email
 
         for (let repairId in data.repaires) {
-          // let status
-          // let repair = data.repaires[repairId]
-
-          // if (repair.startDate) {
-          //   let isRepaired = this.dateDiff(
-          //     repair.startDate, repair.repairType.duration
-          //   )
-          //   status = isRepaired ? 'Repaired' : 'Now being repaired'
-          // } else if (repair.repairType.isAgreed) {
-          //   status = 'Agreed'
-          // } else if (repair.repairType) {
-          //   status = 'Waiting for the client\'s agreement'
-          // } else {
-          //   status = 'Waiting for the repair type'
-          // }
-
           this.repaires.push({
             repairId,
-            // status,
             ...data.repaires[repairId]
           })
         }
