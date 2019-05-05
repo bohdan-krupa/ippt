@@ -5,12 +5,13 @@
       <h3>Repairs:</h3>
       <div v-for="(repair, index) in repaires" :key="index">
         <hr />
-        <p><h4>Status:</h4> {{ repair.status }}</p>
+        <p>Status: {{ repair.status }}</p>
         <h4>Machine Type:</h4>
         <p>Country: {{ repair.machineType.country }}</p>
         <p>Year: {{ repair.machineType.year }}</p>
         <p>Mark: {{ repair.machineType.mark }}</p>
         <div v-if="repair.repairType">
+          <h4>Repait Type:</h4>
           <p>Repait name: {{ repair.repairType.name }}</p>
           <p>Duration: {{ repair.repairType.duration }} days</p>
           <p>Price: {{ repair.repairType.price }}$</p>
