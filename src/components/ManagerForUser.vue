@@ -43,12 +43,13 @@
     created() {
       this.success('Loading...')
       let clientId = this.$route.params.clientId
-      console.log(clientId)
 
       firebase.database().ref('clients/' + clientId).once('value', snap => {
         let data = snap.val()
 
         this.email = data.email
+      console.log(data.email)
+        
 
         for (let repairId in data.repaires) {
           let status
@@ -68,11 +69,6 @@
           }
 
           this.repaires.push({
-            id:     repairId,
-            status,
-            ...data.repaires[repairId]
-          })
-          console.log({
             id:     repairId,
             status,
             ...data.repaires[repairId]
