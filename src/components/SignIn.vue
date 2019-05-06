@@ -25,7 +25,6 @@
         password: null
       }
     },
-    mixins: [toast],
     methods: {
       onSignIn() {
         if (this.emai && this.password.length > 5) {
@@ -38,6 +37,10 @@
           })
         }
       }
-    }
+    },
+    components: {
+      BackBtn
+    },
+    mixins: [toast]
   }
 </script>
