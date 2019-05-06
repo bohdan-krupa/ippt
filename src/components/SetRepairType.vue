@@ -2,18 +2,18 @@
   <div>
     <div class="container">
       <p>Machine:</p>
-      <h4>{{ machine.country }}</h4>
-      <h4>{{ machine.year }}</h4>
-      <h4>{{ machine.mark }}</h4>
+      <h4>{{ machineType.country }}</h4>
+      <h4>{{ machineType.year }}</h4>
+      <h4>{{ machineType.mark }}</h4>
       <hr>
       <p>* Repair name:</p>
-      <input v-model="repair.name" type="text">
+      <input v-model="repairType.name" type="text">
       <p>* Duration (days):</p>
-      <input v-model="repair.duration" type="number">
+      <input v-model="repairType.duration" type="number">
       <p>* Price ($):</p>
-      <input v-model="repair.price" type="number">
+      <input v-model="repairType.price" type="number">
       <p>Notes:</p>
-      <input v-model="repair.notes" type="text">
+      <input v-model="repairType.notes" type="text">
       <div @click="onSetRepairType" class="sign-btn">Done</div>
     </div>
     <BackBtn />
@@ -27,7 +27,7 @@
   export default {
     data() {
       return {
-        clientId:  null,
+        clientId: null,
         repairId: null,
         machineType: {
           country: null,
