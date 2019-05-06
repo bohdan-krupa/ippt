@@ -1,24 +1,28 @@
 <template>
-	<div class="container">
-    <div v-if="!loading">
-      <form>
-        <p>Email</p>
-        <input v-model="email" :class="{ green: isGood.email }" type="email">
-        <p>Password</p>
-        <input v-model="password" :class="{ green: isGood.password }" type="password">
-        <p>Password once again</p>
-        <input v-model="password2" :class="{ green: isGood.password2 }" type="password">
-        <div @click="onSignUp" class="sign-btn">Sign up</div>
-      </form>
-    </div>
-    <div v-if="loading">
-      <h3>Loading...</h3>
-    </div>
-	</div>
+  <div>
+      <div class="container">
+        <div v-if="!loading">
+          <form>
+            <p>Email</p>
+            <input v-model="email" :class="{ green: isGood.email }" type="email">
+            <p>Password</p>
+            <input v-model="password" :class="{ green: isGood.password }" type="password">
+            <p>Password once again</p>
+            <input v-model="password2" :class="{ green: isGood.password2 }" type="password">
+            <div @click="onSignUp" class="sign-btn">Sign up</div>
+          </form>
+        </div>
+        <div v-if="loading">
+          <h3>Loading...</h3>
+        </div>
+      </div>
+      <BackBtn />
+  </div>
 </template>
 
 <script>
   import firebase from 'firebase'
+  import BackBtn from './BackBtn'
   import toast from '../toast.js'
 
   export default {
@@ -49,7 +53,6 @@
         this.isGood.password2 = this.isGood.password && this.password == val ? 1 : 0
       }
     },
-    mixins: [toast],
     methods: {
       onSignUp() {
         if (this.isGood.email && this.isGood.password && this.isGood.password2) {
@@ -65,7 +68,11 @@
           })
         }
       }
-    }
+    },
+    components: {
+      BackBtn
+    },
+    mixins: [toast]
   }
 </script>
 
