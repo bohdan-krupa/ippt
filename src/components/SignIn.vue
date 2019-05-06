@@ -28,7 +28,7 @@
     mixins: [toast],
     methods: {
       onSignIn() {
-        if (this.email && this.password.length > 5) {
+        if (this.emai && this.password.length > 5) {
           firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(() => {
             this.success('You are logged in')
             this.$router.replace('/client')
