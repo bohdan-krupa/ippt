@@ -1,20 +1,33 @@
 <template>
   <div>
     <div class="container">
-      <div v-for="(machine, index) in machines" :key="index">
-        <h4>Machine:</h4>
-        <p>Country: {{ machine.country }}</p>
-        <p>Year: {{ machine.year }}</p>
-        <p>Mark: {{ machine.mark }}</p>
-        <p>Status: {{ getStatus(machine) }}</p>
-        <div v-if="machine.repair">
-          <p>Repair name: {{ machine.repair.name }}</p>
-          <p>Duration: {{ machine.repair.duration }} days</p>
-          <p>Price: {{ machine.repair.price }}$</p>
-          <p v-if="machine.repair.notes">Notes: {{ machine.repair.notes }}</p>
-          <div class="sign-btn">Agree</div>
-        </div>
+      <h3>User: {{ email }}</h3>
+      <h3>Repairs:</h3>
+      <div v-for="(repair, index) in repaires" :key="index">
         <hr />
+        <p>Status: {{ repair.status }}</p>
+        <h4>Machine Type:</h4>
+        <p>Country: {{ repair.machineType.country }}</p>
+        <p>Year: {{ repair.machineType.year }}</p>
+        <p>Mark: {{ repair.machineType.mark }}</p>
+        <div v-if="repair.repairType">
+          <h4>Repait Type:</h4>
+          <p>Repait name: {{ repair.repairType.name }}</p>
+          <p>Duration: {{ repair.repairType.duration }} days</p>
+          <p>Price: {{ repair.repairType.price }}$</p>
+          <p v-if="repair.repairType.notes">Notes: {{ repair.repairType.notes }}</p>
+        </div>
+        <router-link
+          v-if="repair.status == 'Waiting for the repair type'"
+          :to="'/set-repair-type/' + $route.params.clientId + '/' + repair.repairId"
+          class="sign-btn"
+        >Set repair type</router-link>
+        <router-link
+          v-if="repair.status == 'Waiting for the client\'s agreement'"
+          :to="'/set-repair-type/' + $route.params.clientId + '/' + repair.repairId"
+          class="sign-btn"
+        >Edit repair type</router-link>
+        <!-- <router-link :to="" class="sign-btn">To repair</router-link> -->
       </div>
     </div>
     <BackBtn />
@@ -29,30 +42,39 @@
   export default {
     data() {
       return {
-          machines: []
+        repaires: [],
+        email:    null
       }
     },
     mixins: [toast],
     created() {
       this.success('Loading...')
-
-      firebase.auth().onAuthStateChanged(user => {
-        firebase.database().ref('clients/' + user.uid + '/machines').once('value', snap => {
+      let user = firebase.auth().currentUser
+      if (user) {
+        firebase.database().ref('clients/' + user.uid).once('value', snap => {
           let data = snap.val()
-          let machines = []
-          
-          for (let machine in data) {
-            machines.push(data[machine])
+
+          this.email = data.email
+
+          for (let repairId in data.repaires) {
+            this.repaires.push({
+              repairId,
+              ...data.repaires[repairId]
+            })
           }
-          this.machines = machines
-          
-          this.success('Done')
         })
-      })
+      
+        this.success('Done')
+      }
     },
     methods: {
-      getStatus(machine) {
-        return !machine.repair ? 'Waiting for the manager' : 'Processed'
+      dateDiff(startDate, daysOfRepair) {
+        startDate = new Date(startDate)
+        let daysAgo = (
+          Date.now() - Date.UTC(startDate.getFullYear(), startDate.getMonth(), startDate.getDate())
+        ) / (1000 * 60 * 60 * 24)
+
+        return daysAgo > daysOfRepair
       }
     },
     components: {

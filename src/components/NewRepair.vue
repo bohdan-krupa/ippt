@@ -68,7 +68,8 @@
       },
       pushRepair(machineType) {
         firebase.database().ref('clients/' + this.uId + '/repaires').push().set({
-          machineType
+          machineType,
+          status: 'Waiting for the repair type'
         }
         ).then(() => {
           this.$router.replace('/client')

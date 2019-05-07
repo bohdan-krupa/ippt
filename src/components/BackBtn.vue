@@ -14,6 +14,8 @@
 
 <style lang="sass">
   #right-bottom-btn
+    position: absolute
+    bottom: 0
     width: 140px
     height: 40px
     margin: 50px 0 30px 25px
