@@ -61,7 +61,7 @@
             this.repairType
           ).then(() => {
             this.success('Done')
-            this.$route.replace('/manager/' + this.clientId)
+            this.$route.replace('/manager/')
           },
           error => {
             this.error(error.message)
