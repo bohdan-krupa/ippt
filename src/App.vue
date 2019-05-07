@@ -16,7 +16,7 @@
 
   .container
     position: relative
-    margin: 50px auto 0 auto
+    margin: 50px auto 50px auto
     width: max-content
 
   h1
