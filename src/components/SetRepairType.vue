@@ -57,11 +57,12 @@
           this.success('Loading...')
 
           let dbRef = 'clients/' + this.clientId + '/repaires/' + this.repairId + '/repairType'
+          this.$route.replace('/manager/')
+          
           firebase.database().ref(dbRef).set(
             this.repairType
-          ).then(function() {
+          ).then(() => {
             this.success('Done')
-            this.$route.replace('/manager/')
             console.log('sdf')
           },
           error => {
