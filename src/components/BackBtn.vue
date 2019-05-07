@@ -14,11 +14,11 @@
 
 <style lang="sass">
   #right-bottom-btn
-    position: absolute
+    position: fixed
     bottom: 0
     width: 140px
     height: 40px
-    margin: 50px 0 30px 25px
+    margin: 0 0 26px 20px
     background-color: lightblue
     text-align: center
     line-height: 40px
