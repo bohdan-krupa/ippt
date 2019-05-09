@@ -46,7 +46,8 @@
       this.clientId = this.$route.params.clientId
       this.repairId = this.$route.params.repairId
 
-      let dbRef = 'clients/' + this.clientId + '/repaires/' + this.repairId + '/machineType'
+      let dbRef = `clients/${this.clientId}/repaires/${this.repairId}/machineType`
+
       firebase.database().ref(dbRef).once('value', snap => {
         this.machineType = snap.val()
       })
@@ -59,7 +60,7 @@
           let dbRef = `clients/${this.clientId}/repaires/${this.repairId}`
           
           firebase.database().ref(dbRef).update({
-            status:     'Очікування виду ремонту'
+            status:     'Очікування виду ремонту',
             repairType: this.repairType
           }).then(() => {
             this.$router.replace('/manager/' + this.clientId)

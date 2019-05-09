@@ -6,12 +6,12 @@
       <div v-for="(repair, index) in repaires" :key="index">
         <hr />
         <p>Статус: {{ repair.status }}</p>
-        <h4>Тип машини:</h4>
+        <h4>Вид станка:</h4>
         <p>Країна: {{ repair.machineType.country }}</p>
         <p>Рік: {{ repair.machineType.year }}</p>
         <p>Марка: {{ repair.machineType.mark }}</p>
         <div v-if="repair.repairType">
-          <h4>Тип ремонту:</h4>
+          <h4>Вид ремонту:</h4>
           <p>Назва ремонту: {{ repair.repairType.name }}</p>
           <p>Тривалість: {{ repair.repairType.duration }} дн.</p>
           <p>Ціна: {{ repair.repairType.price }} грн</p>
