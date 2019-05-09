@@ -27,19 +27,24 @@
         </div>
         <router-link
           v-if="repair.status == 'Очікування виду ремонту'"
-          :to="'/set-repair-type/' + $route.params.clientId + '/' + repair.repairId"
+          :to="'/set-repair-type/' + clientId + '/' + repair.repairId"
           class="sign-btn"
         >Встановити вид ремонту</router-link>
         <router-link
           v-if="repair.status == 'Очікування згоди'"
-          :to="'/set-repair-type/' + $route.params.clientId + '/' + repair.repairId"
+          :to="'/set-repair-type/' + clientId + '/' + repair.repairId"
           class="sign-btn"
         >Редагувати вид ремонту</router-link>
         <router-link
           v-if="repair.status == 'Очікування початку ремонту'"
-          :to="'/start-repair/' + $route.params.clientId + '/' + repair.repairId"
+          :to="'/start-repair/' + clientId + '/' + repair.repairId"
           class="sign-btn"
         >Почати ремонт</router-link>
+        <div
+          v-if="repair.status == 'На ремонті'"
+          @click="onFinishRepair(repairId)"
+          class="sign-btn"
+        >Завершити ремонт</div>
       </div>
     </div>
     <BackBtn />
@@ -53,15 +58,16 @@
   export default {
     data() {
       return {
-        repaires: [],
-        email:    null
+        clientId: null,
+        email:    null,
+        repaires: []
       }
     },
     created() {
       this.warn('Завантаження...')
-      let clientId = this.$route.params.clientId
+      this.clientId = this.$route.params.clientId
 
-      firebase.database().ref('clients/' + clientId).once('value', snap => {
+      firebase.database().ref(`clients/${this.clientId}`).on('value', snap => {
         let data = snap.val()
 
         this.email = data.email
@@ -77,13 +83,18 @@
       })
     },
     methods: {
-      dateDiff(startDate, daysOfRepair) {
-        startDate = new Date(startDate)
-        let daysAgo = (
-          Date.now() - Date.UTC(startDate.getFullYear(), startDate.getMonth(), startDate.getDate())
-        ) / (1000 * 60 * 60 * 24)
+      onFinishRepair(repairId) {
+        this.warn('Завантаження...')
 
-        return daysAgo > daysOfRepair
+        let dbRef = `clients/${this.clientId}/repairs/${repairId}/status`
+        firebase.database().ref(dbRef).set(
+          'Ремонт завершено'
+        ).then(() => {
+          this.success('Готово')
+        },
+        error => {
+          this.error(error.message)
+        })
       }
     },
     components: {
