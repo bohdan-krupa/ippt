@@ -10,7 +10,7 @@
         <p>Рік: {{ repair.machineType.year }}</p>
         <p>Марка: {{ repair.machineType.mark }}</p>
         <div v-if="repair.repairType">
-          <h4>Вид ремонту:</h4>
+          <h4>Вид ремонту:</h4>{{ ttt }}
           <p>Назва ремонту: {{ repair.repairType.name }}</p>
           <p>Тривалість: {{ repair.repairType.duration }} дн.</p>
           <p>Ціна: {{ repair.repairType.price }} грн</p>
@@ -36,7 +36,8 @@
       return {
         client: null,
         email:    null,
-        repaires: []
+        repaires: [],
+        ttt: email + 'dfg'
       }
     },
     created() {
@@ -78,7 +79,9 @@
           Date.now() - Date.UTC(startDate.getFullYear(), startDate.getMonth(), startDate.getDate())
         ) / (1000 * 60 * 60 * 24)
 
-        return daysAgo > daysOfRepair
+        if (daysAgo > daysOfRepair) {
+          return
+        }
       }
     },
     components: {
