@@ -14,6 +14,9 @@
     color: #333
     user-select: none
 
+  body
+    background-image: url('../src/assets/bg.jpg')
+
   .container
     position: relative
     margin: 50px auto 50px auto
@@ -22,7 +25,4 @@
   h1
     text-align: center
     margin-top: 40px
-
-  body
-    background-image: url('../src/assets/bg.jpg')
 </style>
