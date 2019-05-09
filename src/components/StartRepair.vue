@@ -30,11 +30,14 @@
       this.clientId = this.$route.params.clientId
       this.repairId = this.$route.params.repairId
 
-      let date = new Date()
-      let year = date.getFullYear()
-      let month = date.getMonth()
-      let day = date.getDay()
-      this.date = `${year}.${month}.${day}`
+      // let date = new Date()
+      // let year = date.getFullYear()
+      // let month = date.getMonth();
+      // let day = date.getDay()
+      // this.date = `${year}.${month}.${day}`
+      var m = new Date();
+var dateString = m.getUTCFullYear() +"/"+ (m.getUTCMonth()+1) +"/"+ m.getUTCDate() + " " + m.getUTCHours() + ":" + m.getUTCMinutes() + ":" + m.getUTCSeconds()
+this.date = dateString
 
       let dbRef = 'clients/' + this.clientId + '/repaires/' + this.repairId + '/machineType'
       firebase.database().ref(dbRef).once('value', snap => {
