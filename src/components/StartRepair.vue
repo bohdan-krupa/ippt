@@ -46,8 +46,9 @@
 
         let dbRef = `clients/${this.clientId}/repaires/${this.repairId}`
         
-        firebase.database().ref(`${dbRef}/startDate`).set(
-          this.date
+        firebase.database().ref(`${dbRef}/startDate`).update({
+          startDate1: this.date
+        }
         ).then(() => {
           if (this.notes) {
             firebase.database().ref(`${dbRef}/notes`).set(
