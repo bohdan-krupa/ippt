@@ -2,11 +2,9 @@
   <div>
     <div class="container">
       <p>Дата початку: {{ date }}</p>
-      <!-- <input type="text" disabled> -->
-      <!-- <p>2019.05.09</p> -->
       <p>Примітки:</p>
       <input v-model="notes" type="text">
-      <div @click="onSetRepairType" class="sign-btn">Готово</div>
+      <div @click="onSetRepairType" class="sign-btn">Почати ремонт</div>
     </div>
     <BackBtn />
   </div>
@@ -30,13 +28,12 @@
       this.clientId = this.$route.params.clientId
       this.repairId = this.$route.params.repairId
 
-      // let date = new Date()
-      // let year = date.getFullYear()
-      // let month = date.getMonth();
-      // let day = date.getDay()
-      // this.date = `${year}.${month}.${day}`
+      let date = new Date()
+      date = date.toISOString()
+      date = date.split('T')[0]
+      date = date.replace(/-/g, '.')
 
-      this.date = (new Date()).toISOString().replace(/-/g, '.').split('T')[0]
+      this.date = date
 
       let dbRef = 'clients/' + this.clientId + '/repaires/' + this.repairId + '/machineType'
       firebase.database().ref(dbRef).once('value', snap => {
