@@ -35,7 +35,7 @@
   export default {
     data() {
       return {
-        clientId: null,
+        client: null,
         email:    null,
         repaires: []
       }
@@ -43,9 +43,9 @@
     mixins: [toast],
     created() {
       this.success('Loading...')
-      this.clientId = firebase.auth().currentUser
-      if (this.clientId) {
-        firebase.database().ref('clients/' + this.clientId.uid).on('value', snap => {
+      this.client = firebase.auth().currentUser
+      if (this.client) {
+        firebase.database().ref('clients/' + this.client.uid).on('value', snap => {
           let data = snap.val()
 
           this.email = data.email
@@ -64,7 +64,7 @@
     },
     methods: {
       onAgree(repairId) {
-        let dbRef = 'clients/' + this.clientId.uid + '/repaires/' + repairId + '/status'
+        let dbRef = 'clients/' + this.client.uid + '/repaires/' + repairId + '/status'
         firebase.database().ref(dbRef).set(
           'Очікування початку ремонту'
         ).then(() => {

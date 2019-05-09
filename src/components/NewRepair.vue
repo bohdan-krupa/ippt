@@ -7,7 +7,7 @@
       <input v-model="year" type="number" min="1980">
       <p>Марка</p>
       <input v-model="mark" type="text">
-      <div @click="onDone" class="sign-btn">Готово</div>
+      <div @click="onDone" class="sign-btn">Звернутись за ремонтом</div>
     </div>
     <BackBtn />
   </div>
