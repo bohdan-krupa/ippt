@@ -15,7 +15,7 @@
     user-select: none
 
   body
-    background-image: url('../src/assets/bg.jpg')
+    // background-image: url('../src/assets/bg.jpg')
 
   .container
     position: relative

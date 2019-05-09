@@ -18,16 +18,20 @@
           <p v-if="repair.repairType.notes">Примітки: {{ repair.repairType.notes }}</p>
         </div>
         <router-link
-          v-if="repair.status == 'Waiting for the repair type'"
+          v-if="repair.status == 'Очікування визначення виду ремонту'"
           :to="'/set-repair-type/' + $route.params.clientId + '/' + repair.repairId"
           class="sign-btn"
         >Встановити тип ремонту</router-link>
         <router-link
-          v-if="repair.status == 'Waiting for the client\'s agreement'"
+          v-if="repair.status == 'Очікування згоди'"
           :to="'/set-repair-type/' + $route.params.clientId + '/' + repair.repairId"
           class="sign-btn"
         >Редагувати тип ремонту</router-link>
-        <!-- <router-link :to="" class="sign-btn">To repair</router-link> -->
+        <router-link
+          v-if="repair.status == 'Очікування початку ремонту'"
+          :to="'/set-repair-type/' + $route.params.clientId + '/' + repair.repairId"
+          class="sign-btn"
+        >Почати ремонт</router-link>
       </div>
     </div>
     <BackBtn />

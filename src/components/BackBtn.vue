@@ -19,8 +19,7 @@
     width: 140px
     height: 40px
     margin: 0 0 26px 20px
-    background-image: url('../src/assets/bg.jpg')
-    // background-color: lightblue
+    background-color: lightblue
     text-align: center
     line-height: 40px
     border-radius: 20px
