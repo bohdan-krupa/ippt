@@ -1,10 +1,10 @@
 <template>
   <div>
     <div class="container">
-      <p>Вид станка:</p>
-      <h4>{{ machineType.country }}</h4>
-      <h4>{{ machineType.year }}</h4>
-      <h4>{{ machineType.mark }}</h4>
+      <h4>Вид станка:</h4>
+      <p>Країна: {{ machineType.country }}</p>
+      <p>Рік: {{ machineType.year }}</p>
+      <p>Марка: {{ machineType.mark }}</p>
       <hr>
       <p>* Назва ремонту:</p>
       <input v-model="repairType.name" type="text">
