@@ -4,7 +4,7 @@
       <p>Дата початку: {{ date }}</p>
       <p>Примітки:</p>
       <input v-model="notes" type="text">
-      <div @click="onSetRepairType" class="sign-btn">Почати ремонт</div>
+      <div @click="onStartRepair" class="sign-btn">Почати ремонт</div>
     </div>
     <BackBtn />
   </div>
@@ -41,30 +41,30 @@
       })
     },
     methods: {
-      onSetRepairType() {
-        if (this.repairType.name && this.repairType.duration && this.repairType.price) {
-          this.success('Loading...')
+      onStartRepair() {
+        this.success('Loading...')
 
-          let dbRef = 'clients/' + this.clientId + '/repaires/' + this.repairId
-          
-          firebase.database().ref(dbRef + '/repairType').set(
-            this.repairType
-          ).then(() => {
-            firebase.database().ref(dbRef + '/status').set(
-              'Waiting for the client\'s agreement'
+        let dbRef = `clients/${this.clientId}/repaires/${this.repairId}`
+        
+        firebase.database().ref(`${dbRef}/startDate`).set(
+          this.date
+        ).then(() => {
+          if (this.notes) {
+            firebase.database().ref(`${dbRef}/notes`).set(
+              this.notes
             ).then(() => {
-              this.$router.replace('/manager/' + this.clientId)
+              this.success('Ремонт почато')
             },
             error => {
               this.error(error.message)
             })
-          },
-          error => {
-            this.error(error.message)
-          })
-        } else {
-          this.error('Incorrect data')
-        }
+          } else {
+            this.success('Ремонт почато')
+          }
+        },
+        error => {
+          this.error(error.message)
+        })
       }
     },
     components: {
