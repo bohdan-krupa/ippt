@@ -64,8 +64,7 @@
             firebase.database().ref(dbRef + '/status').set(
               'Waiting for the client\'s agreement'
             ).then(() => {
-              this.success('Done')
-              console.log(this.$router)
+              this.$router.replace('/manager/' + this.clientId)
             },
             error => {
               this.error(error.message)

@@ -62,8 +62,6 @@
             ...data.repaires[repairId]
           })
         }
-
-        this.success('Done')
       })
     },
     methods: {
