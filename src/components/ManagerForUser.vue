@@ -1,20 +1,20 @@
 <template>
   <div>
     <div class="container">
-      <h3>User: {{ email }}</h3>
-      <h3>Repairs:</h3>
+      <h3>Клієнт: {{ email }}</h3>
+      <h3>Ремонти:</h3>
       <div v-for="(repair, index) in repaires" :key="index">
         <hr />
-        <p>Status: {{ repair.status }}</p>
-        <h4>Machine Type:</h4>
-        <p>Country: {{ repair.machineType.country }}</p>
-        <p>Year: {{ repair.machineType.year }}</p>
-        <p>Mark: {{ repair.machineType.mark }}</p>
+        <p>Статус: {{ repair.status }}</p>
+        <h4>Тип машини:</h4>
+        <p>Країна: {{ repair.machineType.country }}</p>
+        <p>Рік: {{ repair.machineType.year }}</p>
+        <p>Марка: {{ repair.machineType.mark }}</p>
         <div v-if="repair.repairType">
           <h4>Тип ремонту:</h4>
           <p>Назва ремонту: {{ repair.repairType.name }}</p>
           <p>Тривалість: {{ repair.repairType.duration }} дн.</p>
-          <p>Ціна: {{ repair.repairType.price }}грн</p>
+          <p>Ціна: {{ repair.repairType.price }} грн</p>
           <p v-if="repair.repairType.notes">Notes: {{ repair.repairType.notes }}</p>
         </div>
         <router-link
