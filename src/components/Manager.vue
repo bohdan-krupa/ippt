@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h4>Clients:</h4>
+    <h4>Клієнти:</h4>
     <router-link
       v-for="(client, index) in clients"
       :to="'/manager/' + client.id"
@@ -21,7 +21,7 @@
       }
     },
     created() {
-      this.success('Loading...')
+      this.warn('Завантаження...')
 
       firebase.database().ref('clients').once('value', snap => {
         let clients = snap.val()
@@ -35,7 +35,7 @@
         }
 
         this.clients = currentData
-        this.success('Done')
+        this.success('Готово')
       })
     },
     mixins: [toast]
