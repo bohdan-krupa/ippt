@@ -59,11 +59,17 @@
           let dbRef = 'clients/' + this.clientId + '/repaires/' + this.repairId
           // this.$route.replace('/manager/')
           
-          firebase.database().ref(dbRef).set({
-            repairType: this.repairType,
-            status: 'Waiting for the client\'s agreement'
-          }).then(() => {
-            this.success('Done')
+          firebase.database().ref(dbRef + '/repairType').set(
+            this.repairType
+          ).then(() => {
+            firebase.database().ref(dbRef + '/status').push(
+              'Waiting for the client\'s agreement'
+            ).then(() => {
+              this.success('Done')
+            },
+            error => {
+              this.error(error.message)
+            })
           },
           error => {
             this.error(error.message)
