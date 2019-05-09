@@ -41,7 +41,7 @@
 <script>
   import firebase from 'firebase'
   import BackBtn from './BackBtn.vue'
-  import toast from '../toast.js'
+  // import toast from '../toast.js'
 
   export default {
     data() {
@@ -50,7 +50,7 @@
         email:    null
       }
     },
-    mixins: [toast],
+    // mixins: [toast],
     created() {
       this.success('Loading...')
       let clientId = this.$route.params.clientId
