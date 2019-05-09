@@ -71,6 +71,7 @@
         let data = snap.val()
 
         this.email = data.email
+        this.repaires = []
 
         for (let repairId in data.repaires) {
           this.repaires.push({
@@ -78,8 +79,6 @@
             ...data.repaires[repairId]
           })
         }
-
-        this.success('Готово')
       })
     },
     methods: {
