@@ -48,7 +48,7 @@
         }).then(() => {
           this.success('Ремонт почато')
 
-          this.$router.push(`/manager/${this.clientId}`)
+          this.$router.replace(`/manager/${this.clientId}`)
         },
         error => {
           this.error(error.message)
