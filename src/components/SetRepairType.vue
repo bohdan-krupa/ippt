@@ -6,13 +6,13 @@
       <h4>{{ machineType.year }}</h4>
       <h4>{{ machineType.mark }}</h4>
       <hr>
-      <p>* Repair name:</p>
+      <p>* Назва ремонту:</p>
       <input v-model="repairType.name" type="text">
-      <p>* Duration (days):</p>
+      <p>* Тривалість (days):</p>
       <input v-model="repairType.duration" type="number">
-      <p>* Price ($):</p>
+      <p>* Ціна (грн):</p>
       <input v-model="repairType.price" type="number">
-      <p>Notes:</p>
+      <p>Примітки:</p>
       <input v-model="repairType.notes" type="text">
       <div @click="onSetRepairType" class="sign-btn">Done</div>
     </div>
@@ -56,12 +56,13 @@
         if (this.repairType.name && this.repairType.duration && this.repairType.price) {
           this.success('Loading...')
 
-          let dbRef = 'clients/' + this.clientId + '/repaires/' + this.repairId + '/repairType'
-          this.$route.replace('/manager/')
+          let dbRef = 'clients/' + this.clientId + '/repaires/' + this.repairId
+          // this.$route.replace('/manager/')
           
-          firebase.database().ref(dbRef).set(
-            this.repairType
-          ).then(() => {
+          firebase.database().ref(dbRef).set({
+            status: 'Waiting for the client\'s agreement',
+            repairType: this.repairType
+          }).then(() => {
             this.success('Done')
           },
           error => {
