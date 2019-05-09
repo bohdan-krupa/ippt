@@ -43,9 +43,9 @@
     mixins: [toast],
     created() {
       this.success('Loading...')
-      this.clientId = firebase.auth().currentUser.uid
+      this.clientId = firebase.auth().currentUser
       if (this.clientId) {
-        firebase.database().ref('clients/' + this.clientId).once('value', snap => {
+        firebase.database().ref('clients/' + this.clientId.uid).once('value', snap => {
           let data = snap.val()
 
           this.email = data.email
@@ -62,8 +62,16 @@
       }
     },
     methods: {
-      onAgree() {
-        firebase.database.ref('clients/' + this.clientId + '/repaires/' + )
+      onAgree(repairId) {
+        let dbRef = 'clients/' + this.clientId.uid + '/repaires/' + repairId + '/status'
+        firebase.database.ref(dbRef).set(
+          'Очікування початку ремонту'
+        ).then(() => {
+
+        },
+        error => {
+          this.error(error.message)
+        })
       },
       dateDiff(startDate, daysOfRepair) {
         startDate = new Date(startDate)
