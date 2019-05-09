@@ -9,6 +9,7 @@ import MyRepairs from '../src/components/MyRepairs.vue'
 import Manager from '../src/components/Manager.vue'
 import ManagerForUser from '../src/components/ManagerForUser.vue'
 import SetRepairType from '../src/components/SetRepairType.vue'
+import StartRepair from '../src/components/StartRepair.vue'
 
 Vue.use(VueRouter)
 
@@ -22,6 +23,7 @@ export default new VueRouter({
     { path: '/client/my-repairs', component: MyRepairs },
     { path: '/manager', component: Manager },
     { path: '/manager/:clientId', component: ManagerForUser },
-    { path: '/set-repair-type/:clientId/:repairId', component: SetRepairType }
+    { path: '/set-repair-type/:clientId/:repairId', component: SetRepairType },
+    { path: '/start-repair/:clientId/:repairId', component: StartRepair }
   ]
 })
