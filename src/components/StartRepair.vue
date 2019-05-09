@@ -1,10 +1,11 @@
 <template>
   <div>
     <div class="container">
-      <p>* Дата початку:</p>
-      <input v-model="repairType.name" type="date">
+      <p>Дата початку: {{ date }}</p>
+      <!-- <input type="text" disabled> -->
+      <!-- <p>2019.05.09</p> -->
       <p>Примітки:</p>
-      <input v-model="repairType.notes" type="text">
+      <input v-model="notes" type="text">
       <div @click="onSetRepairType" class="sign-btn">Готово</div>
     </div>
     <BackBtn />
@@ -20,22 +21,16 @@
       return {
         clientId: null,
         repairId: null,
-        machineType: {
-          country: null,
-          year:    null,
-          mark:    null
-        },
-        repairType: {
-          name:     null,
-          duration: null,
-          price:    null,
-          notes:    null
-        }
+
+        date:     null,
+        notes:    null
       }
     },
     created() {
       this.clientId = this.$route.params.clientId
       this.repairId = this.$route.params.repairId
+
+      this.date = new Date('yy/mm/dd')
 
       let dbRef = 'clients/' + this.clientId + '/repaires/' + this.repairId + '/machineType'
       firebase.database().ref(dbRef).once('value', snap => {

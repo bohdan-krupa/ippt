@@ -29,7 +29,7 @@
         >Редагувати вид ремонту</router-link>
         <router-link
           v-if="repair.status == 'Очікування початку ремонту'"
-          :to="'/set-repair-type/' + $route.params.clientId + '/' + repair.repairId"
+          :to="'/start-repair/' + $route.params.clientId + '/' + repair.repairId"
           class="sign-btn"
         >Почати ремонт</router-link>
       </div>
