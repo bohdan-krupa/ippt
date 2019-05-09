@@ -84,10 +84,9 @@
     },
     methods: {
       onFinishRepair(repairId) {
-        console.log('sfg')
         this.warn('Завантаження...')
 
-        let dbRef = `clients/${this.clientId}/repairs/${repairId}/status`
+        let dbRef = `clients/${this.clientId}/repaires/${repairId}/status`
         firebase.database().ref(dbRef).set(
           'Ремонт завершено'
         ).then(() => {
