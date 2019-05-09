@@ -24,5 +24,5 @@
     margin-top: 40px
 
   body
-    background-color: #999
+    background-image: url('../src/assets/bg.jpg')
 </style>
