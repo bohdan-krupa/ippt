@@ -2,11 +2,11 @@
   <div>
       <div class="container">
         <form>
-          <p>Email</p>
+          <p>Email:</p>
           <input v-model="email" type="email">
-          <p>Password</p>
+          <p>Пароль:</p>
           <input v-model="password" type="password">
-          <div @click="onSignIn" class="sign-btn">Sign in</div>
+          <div @click="onSignIn" class="sign-btn">Ввійти</div>
         </form>
       </div>
       <BackBtn />
@@ -29,7 +29,7 @@
       onSignIn() {
         if (this.email && this.password.length > 5) {
           firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(() => {
-            this.success('You are logged in')
+            this.success('Ви успішно ввійшли')
             this.$router.replace('/client')
           },
           error => {

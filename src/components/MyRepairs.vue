@@ -70,11 +70,14 @@
     },
     methods: {
       onAgree(repairId) {
+        this.warn('Завантаження...')
+
         let dbRef = `clients/${this.client.uid}/repaires/${repairId}/status`
+
         firebase.database().ref(dbRef).set(
           'Очікування початку ремонту'
         ).then(() => {
-          this.success('Завантаження...')
+          this.success('Готово')
         },
         error => {
           this.error(error.message)
