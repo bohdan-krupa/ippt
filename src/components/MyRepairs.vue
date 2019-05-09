@@ -30,7 +30,6 @@
 <script>
   import firebase from 'firebase'
   import BackBtn from './BackBtn.vue'
-  import toast from '../toast.js'
 
   export default {
     data() {
@@ -40,9 +39,8 @@
         repaires: []
       }
     },
-    mixins: [toast],
     created() {
-      this.success('Loading...')
+      this.warn('Завантаження...')
       this.client = firebase.auth().currentUser
       if (this.client) {
         firebase.database().ref('clients/' + this.client.uid).on('value', snap => {
