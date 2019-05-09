@@ -54,27 +54,21 @@
     methods: {
       onSetRepairType() {
         if (this.repairType.name && this.repairType.duration && this.repairType.price) {
-          this.success('Loading...')
+          this.warn('Завантаження...')
 
-          let dbRef = 'clients/' + this.clientId + '/repaires/' + this.repairId
+          let dbRef = `clients/${this.clientId}/repaires/${this.repairId}`
           
-          firebase.database().ref(dbRef + '/repairType').set(
-            this.repairType
-          ).then(() => {
-            firebase.database().ref(dbRef + '/status').set(
-              'Waiting for the client\'s agreement'
-            ).then(() => {
-              this.$router.replace('/manager/' + this.clientId)
-            },
-            error => {
-              this.error(error.message)
-            })
+          firebase.database().ref(dbRef).update({
+            status:     'Очікування виду ремонту'
+            repairType: this.repairType
+          }).then(() => {
+            this.$router.replace('/manager/' + this.clientId)
           },
           error => {
             this.error(error.message)
           })
         } else {
-          this.error('Incorrect data')
+          this.error('Невірні дані')
         }
       }
     },

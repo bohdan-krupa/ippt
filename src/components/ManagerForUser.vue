@@ -41,7 +41,6 @@
 <script>
   import firebase from 'firebase'
   import BackBtn from './BackBtn.vue'
-  // import toast from '../toast.js'
 
   export default {
     data() {
@@ -50,9 +49,8 @@
         email:    null
       }
     },
-    // mixins: [toast],
     created() {
-      this.success('Loading...')
+      this.warn('Завантаження...')
       let clientId = this.$route.params.clientId
 
       firebase.database().ref('clients/' + clientId).once('value', snap => {
@@ -66,6 +64,8 @@
             ...data.repaires[repairId]
           })
         }
+
+        this.success('Готово')
       })
     },
     methods: {
