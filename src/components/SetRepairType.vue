@@ -65,7 +65,7 @@
               'Waiting for the client\'s agreement'
             ).then(() => {
               this.success('Done')
-              this.$route.go(-1)
+              console.log(this.$router)
             },
             error => {
               this.error(error.message)
