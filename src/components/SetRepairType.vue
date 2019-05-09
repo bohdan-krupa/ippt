@@ -57,7 +57,6 @@
           this.success('Loading...')
 
           let dbRef = 'clients/' + this.clientId + '/repaires/' + this.repairId
-          // this.$route.replace('/manager/')
           
           firebase.database().ref(dbRef + '/repairType').set(
             this.repairType
@@ -66,6 +65,7 @@
               'Waiting for the client\'s agreement'
             ).then(() => {
               this.success('Done')
+              this.$route.go(-1)
             },
             error => {
               this.error(error.message)
