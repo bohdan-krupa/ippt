@@ -47,6 +47,8 @@
           notes:     this.notes
         }).then(() => {
           this.success('Ремонт почато')
+
+          this.$router.replace(`/manager/${this.clientId}`)
         },
         error => {
           this.error(error.message)
