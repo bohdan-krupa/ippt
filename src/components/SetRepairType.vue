@@ -62,7 +62,7 @@
           firebase.database().ref(dbRef + '/repairType').set(
             this.repairType
           ).then(() => {
-            firebase.database().ref(dbRef + '/status').push(
+            firebase.database().ref(dbRef + '/status').set(
               'Waiting for the client\'s agreement'
             ).then(() => {
               this.success('Done')
