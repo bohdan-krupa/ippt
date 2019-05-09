@@ -15,18 +15,18 @@
           <p>Назва ремонту: {{ repair.repairType.name }}</p>
           <p>Тривалість: {{ repair.repairType.duration }} дн.</p>
           <p>Ціна: {{ repair.repairType.price }} грн</p>
-          <p v-if="repair.repairType.notes">Notes: {{ repair.repairType.notes }}</p>
+          <p v-if="repair.repairType.notes">Примітки: {{ repair.repairType.notes }}</p>
         </div>
         <router-link
           v-if="repair.status == 'Waiting for the repair type'"
           :to="'/set-repair-type/' + $route.params.clientId + '/' + repair.repairId"
           class="sign-btn"
-        >Set repair type</router-link>
+        >Встановити тип ремонту</router-link>
         <router-link
           v-if="repair.status == 'Waiting for the client\'s agreement'"
           :to="'/set-repair-type/' + $route.params.clientId + '/' + repair.repairId"
           class="sign-btn"
-        >Edit repair type</router-link>
+        >Редагувати тип ремонту</router-link>
         <!-- <router-link :to="" class="sign-btn">To repair</router-link> -->
       </div>
     </div>

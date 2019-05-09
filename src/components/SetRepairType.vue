@@ -1,20 +1,20 @@
 <template>
   <div>
     <div class="container">
-      <p>Machine:</p>
+      <p>Вид станка:</p>
       <h4>{{ machineType.country }}</h4>
       <h4>{{ machineType.year }}</h4>
       <h4>{{ machineType.mark }}</h4>
       <hr>
       <p>* Назва ремонту:</p>
       <input v-model="repairType.name" type="text">
-      <p>* Тривалість (days):</p>
+      <p>* Тривалість (дн.):</p>
       <input v-model="repairType.duration" type="number">
       <p>* Ціна (грн):</p>
       <input v-model="repairType.price" type="number">
       <p>Примітки:</p>
       <input v-model="repairType.notes" type="text">
-      <div @click="onSetRepairType" class="sign-btn">Done</div>
+      <div @click="onSetRepairType" class="sign-btn">Готово</div>
     </div>
     <BackBtn />
   </div>
