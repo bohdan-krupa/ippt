@@ -1,10 +1,11 @@
 <template>
   <div>
     <div class="container">
-      <router-link to="/client/new-repair" class="sign-btn">Ask for repair</router-link>
-      <router-link to="/client/my-repairs" class="sign-btn">My tasks</router-link>
+      <p></p>
+      <router-link to="/client/new-repair" class="sign-btn">Звернутись за ремонтом</router-link>
+      <router-link to="/client/my-repairs" class="sign-btn">Мої ремонти</router-link>
     </div>
-    <div @click="onSignOut" id="right-bottom-btn">Sign out</div>
+    <div @click="onSignOut" id="right-bottom-btn">Вийти</div>
   </div>
 </template>
 
@@ -13,16 +14,11 @@
   import toast from '../toast.js'
 
   export default {
-    data() {
-      return {
-        
-      }
-    },
     mixins: [toast],
     methods: {
       onSignOut() {
         firebase.auth().signOut().then(() => {
-          this.success('You are logged out')
+          this.success('Ви успішно вийшли')
 
           this.$router.replace('/')
         },
