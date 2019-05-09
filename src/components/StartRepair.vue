@@ -34,34 +34,19 @@
       date = date.replace(/-/g, '.')
 
       this.date = date
-
-      let dbRef = 'clients/' + this.clientId + '/repaires/' + this.repairId + '/machineType'
-      firebase.database().ref(dbRef).once('value', snap => {
-        this.machineType = snap.val()
-      })
     },
     methods: {
       onStartRepair() {
         this.success('Loading...')
 
         let dbRef = `clients/${this.clientId}/repaires/${this.repairId}`
-        
-        firebase.database().ref(`${dbRef}/startDate`).update({
-          startDate1: this.date
-        }
-        ).then(() => {
-          if (this.notes) {
-            firebase.database().ref(`${dbRef}/notes`).set(
-              this.notes
-            ).then(() => {
-              this.success('Ремонт почато')
-            },
-            error => {
-              this.error(error.message)
-            })
-          } else {
-            this.success('Ремонт почато')
-          }
+
+        firebase.database().ref(dbRef).update({
+          status:    'На ремонті',
+          startDate: this.date,
+          notes:     this.notes
+        }).then(() => {
+          this.success('Ремонт почато')
         },
         error => {
           this.error(error.message)
