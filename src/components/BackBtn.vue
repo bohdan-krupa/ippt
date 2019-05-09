@@ -1,5 +1,5 @@
 <template>
-  <div @click="onBack" id="right-bottom-btn">Back</div>
+  <div @click="onBack" id="right-bottom-btn">Назад</div>
 </template>
 
 <script>
