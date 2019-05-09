@@ -63,7 +63,6 @@
             this.repairType
           ).then(() => {
             this.success('Done')
-            console.log('sdf')
           },
           error => {
             this.error(error.message)
