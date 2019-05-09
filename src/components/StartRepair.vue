@@ -35,9 +35,8 @@
       // let month = date.getMonth();
       // let day = date.getDay()
       // this.date = `${year}.${month}.${day}`
-      var m = new Date();
-var dateString = m.getUTCFullYear() +"/"+ (m.getUTCMonth()+1) +"/"+ m.getUTCDate() + " " + m.getUTCHours() + ":" + m.getUTCMinutes() + ":" + m.getUTCSeconds()
-this.date = dateString
+
+      this.date = (new Date()).toISOString().replace(/-/g, '.').split('T')[0]
 
       let dbRef = 'clients/' + this.clientId + '/repaires/' + this.repairId + '/machineType'
       firebase.database().ref(dbRef).once('value', snap => {
