@@ -17,6 +17,14 @@
           <p>Ціна: {{ repair.repairType.price }} грн</p>
           <p v-if="repair.repairType.notes">Примітки: {{ repair.repairType.notes }}</p>
         </div>
+        <div v-if="repair.startDate">
+          <h4>Початок ремонту:</h4>
+          <p>{{ repair.startDate }}</p>
+        </div>
+        <div v-if="repair.notes">
+          <h4>Примітки:</h4>
+          <p>{{ repair.notes }}</p>
+        </div>
         <router-link
           v-if="repair.status == 'Очікування виду ремонту'"
           :to="'/set-repair-type/' + $route.params.clientId + '/' + repair.repairId"
