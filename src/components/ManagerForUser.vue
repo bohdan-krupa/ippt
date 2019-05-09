@@ -11,10 +11,10 @@
         <p>Year: {{ repair.machineType.year }}</p>
         <p>Mark: {{ repair.machineType.mark }}</p>
         <div v-if="repair.repairType">
-          <h4>Repait Type:</h4>
-          <p>Repait name: {{ repair.repairType.name }}</p>
-          <p>Duration: {{ repair.repairType.duration }} days</p>
-          <p>Price: {{ repair.repairType.price }}$</p>
+          <h4>Тип ремонту:</h4>
+          <p>Назва ремонту: {{ repair.repairType.name }}</p>
+          <p>Тривалість: {{ repair.repairType.duration }} дн.</p>
+          <p>Ціна: {{ repair.repairType.price }}грн</p>
           <p v-if="repair.repairType.notes">Notes: {{ repair.repairType.notes }}</p>
         </div>
         <router-link
