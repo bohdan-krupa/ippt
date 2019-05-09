@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Repair of machines</h1>
+    <h1>Ремонт станків</h1>
     <router-view></router-view>
     <notifications position="top right" />
   </div>
