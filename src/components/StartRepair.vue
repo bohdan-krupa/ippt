@@ -30,7 +30,11 @@
       this.clientId = this.$route.params.clientId
       this.repairId = this.$route.params.repairId
 
-      this.date = new Date().now()
+      let date = new Date()
+      let year = date.getFullYear()
+      let month = date.getMonth()
+      let day = date.getDay()
+      this.date = `${year}.${month}.${day}`
 
       let dbRef = 'clients/' + this.clientId + '/repaires/' + this.repairId + '/machineType'
       firebase.database().ref(dbRef).once('value', snap => {
