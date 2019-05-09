@@ -1,33 +1,26 @@
 <template>
   <div>
     <div class="container">
-      <h3>User: {{ email }}</h3>
-      <h3>Repairs:</h3>
+      <h3>Мої ремонти:</h3>
       <div v-for="(repair, index) in repaires" :key="index">
         <hr />
-        <p>Status: {{ repair.status }}</p>
-        <h4>Machine Type:</h4>
-        <p>Country: {{ repair.machineType.country }}</p>
-        <p>Year: {{ repair.machineType.year }}</p>
-        <p>Mark: {{ repair.machineType.mark }}</p>
+        <p>Статус: {{ repair.status }}</p>
+        <h4>Вид станка:</h4>
+        <p>Країна: {{ repair.machineType.country }}</p>
+        <p>Рік: {{ repair.machineType.year }}</p>
+        <p>Марка: {{ repair.machineType.mark }}</p>
         <div v-if="repair.repairType">
-          <h4>Repait Type:</h4>
-          <p>Repait name: {{ repair.repairType.name }}</p>
-          <p>Duration: {{ repair.repairType.duration }} days</p>
-          <p>Price: {{ repair.repairType.price }}$</p>
-          <p v-if="repair.repairType.notes">Notes: {{ repair.repairType.notes }}</p>
+          <h4>Вид ремонту:</h4>
+          <p>Назва ремонту: {{ repair.repairType.name }}</p>
+          <p>Тривалість: {{ repair.repairType.duration }} дн.</p>
+          <p>Ціна: {{ repair.repairType.price }} грн</p>
+          <p v-if="repair.repairType.notes">Примітки: {{ repair.repairType.notes }}</p>
         </div>
         <router-link
-          v-if="repair.status == 'Waiting for the repair type'"
+          v-if="repair.status == 'Очікування на згоду'"
           :to="'/set-repair-type/' + $route.params.clientId + '/' + repair.repairId"
           class="sign-btn"
-        >Set repair type</router-link>
-        <router-link
-          v-if="repair.status == 'Waiting for the client\'s agreement'"
-          :to="'/set-repair-type/' + $route.params.clientId + '/' + repair.repairId"
-          class="sign-btn"
-        >Edit repair type</router-link>
-        <!-- <router-link :to="" class="sign-btn">To repair</router-link> -->
+        >Я погоджуюсь</router-link>
       </div>
     </div>
     <BackBtn />
