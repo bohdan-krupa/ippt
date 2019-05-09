@@ -17,7 +17,7 @@
           <p v-if="repair.repairType.notes">Примітки: {{ repair.repairType.notes }}</p>
         </div>
         <div
-          v-if="repair.status == 'Очікування на згоду'"
+          v-if="repair.status == 'Очікування згоди'"
           @click="onAgree(repair.repairId)"
           class="sign-btn"
         >Я погоджуюсь</div>
@@ -45,10 +45,11 @@
       this.success('Loading...')
       this.clientId = firebase.auth().currentUser
       if (this.clientId) {
-        firebase.database().ref('clients/' + this.clientId.uid).once('value', snap => {
+        firebase.database().ref('clients/' + this.clientId.uid).on('value', snap => {
           let data = snap.val()
 
           this.email = data.email
+          this.repaires = []
 
           for (let repairId in data.repaires) {
             this.repaires.push({
@@ -58,16 +59,16 @@
           }
         })
       
-        this.success('Done')
+        this.success('Готово')
       }
     },
     methods: {
       onAgree(repairId) {
         let dbRef = 'clients/' + this.clientId.uid + '/repaires/' + repairId + '/status'
-        firebase.database.ref(dbRef).set(
+        firebase.database().ref(dbRef).set(
           'Очікування початку ремонту'
         ).then(() => {
-
+          this.success('Завантаження...')
         },
         error => {
           this.error(error.message)
