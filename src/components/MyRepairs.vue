@@ -16,7 +16,11 @@
           <p>Ціна: {{ repair.repairType.price }} грн</p>
           <p v-if="repair.repairType.notes">Примітки: {{ repair.repairType.notes }}</p>
         </div>
-        <div v-if="repair.status == 'Очікування на згоду'" class="sign-btn">Я погоджуюсь</div>
+        <div
+          v-if="repair.status == 'Очікування на згоду'"
+          @click="onAgree(repair.repairId)"
+          class="sign-btn"
+        >Я погоджуюсь</div>
       </div>
     </div>
     <BackBtn />
@@ -31,16 +35,17 @@
   export default {
     data() {
       return {
-        repaires: [],
-        email:    null
+        clientId: null,
+        email:    null,
+        repaires: []
       }
     },
     mixins: [toast],
     created() {
       this.success('Loading...')
-      let user = firebase.auth().currentUser
-      if (user) {
-        firebase.database().ref('clients/' + user.uid).once('value', snap => {
+      this.clientId = firebase.auth().currentUser.uid
+      if (this.clientId) {
+        firebase.database().ref('clients/' + this.clientId).once('value', snap => {
           let data = snap.val()
 
           this.email = data.email
@@ -57,6 +62,9 @@
       }
     },
     methods: {
+      onAgree() {
+        firebase.database.ref('clients/' + this.clientId + '/repaires/' + )
+      },
       dateDiff(startDate, daysOfRepair) {
         startDate = new Date(startDate)
         let daysAgo = (
