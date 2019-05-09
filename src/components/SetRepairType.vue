@@ -60,8 +60,8 @@
           // this.$route.replace('/manager/')
           
           firebase.database().ref(dbRef).set({
-            status: 'Waiting for the client\'s agreement',
-            repairType: this.repairType
+            repairType: this.repairType,
+            status: 'Waiting for the client\'s agreement'
           }).then(() => {
             this.success('Done')
           },
