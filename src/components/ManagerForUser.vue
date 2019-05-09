@@ -42,7 +42,7 @@
         >Почати ремонт</router-link>
         <div
           v-if="repair.status == 'На ремонті'"
-          @click="onFinishRepair(repairId)"
+          @click="onFinishRepair(repair.repairId)"
           class="sign-btn"
         >Завершити ремонт</div>
       </div>
@@ -84,6 +84,7 @@
     },
     methods: {
       onFinishRepair(repairId) {
+        console.log('sfg')
         this.warn('Завантаження...')
 
         let dbRef = `clients/${this.clientId}/repairs/${repairId}/status`
