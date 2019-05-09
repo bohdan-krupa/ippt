@@ -37,7 +37,7 @@
     },
     methods: {
       onStartRepair() {
-        this.success('Завантаження...')
+        this.warn('Завантаження...')
 
         let dbRef = `clients/${this.clientId}/repaires/${this.repairId}`
 
