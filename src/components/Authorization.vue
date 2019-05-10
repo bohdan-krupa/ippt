@@ -1,7 +1,7 @@
 <template>
   <div class="container">
-    <router-link to="/sign-in">Sign in</router-link>
-    <router-link to="/sign-up">Sign up</router-link>
+    <router-link to="/sign-in">Вхід</router-link>
+    <router-link to="/sign-up">Реєстрація</router-link>
   </div>
 </template>
 
