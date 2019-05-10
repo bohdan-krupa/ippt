@@ -28,9 +28,15 @@
     methods: {
       onSignIn() {
         if (this.email && this.password.length > 5) {
-          firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(() => {
+          firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(user => {
             this.success('Ви успішно ввійшли')
-            this.$router.replace('/client')
+
+            if (user.uid == '3IVvDzvpurMJA1iwt9Y8igdoYyJ2') {
+              // Доробити
+              this.$router.replace('/manager')
+            } else {
+              this.$router.replace('/client')
+            }
           },
           error => {
             this.error(error.message)
