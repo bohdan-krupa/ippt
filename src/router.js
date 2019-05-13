@@ -10,6 +10,7 @@ import Manager from '../src/components/Manager.vue'
 import ManagerForUser from '../src/components/ManagerForUser.vue'
 import SetRepairType from '../src/components/SetRepairType.vue'
 import StartRepair from '../src/components/StartRepair.vue'
+import Admin from '../src/components/Admin.vue'
 
 Vue.use(VueRouter)
 
@@ -25,7 +26,8 @@ const router = new VueRouter({
     { path: '/manager', component: Manager },
     { path: '/manager/:clientId', component: ManagerForUser },
     { path: '/set-repair-type/:clientId/:repairId', component: SetRepairType },
-    { path: '/start-repair/:clientId/:repairId', component: StartRepair }
+    { path: '/start-repair/:clientId/:repairId', component: StartRepair },
+    { path: '/admin', component: Admin }
   ]
 })
 
