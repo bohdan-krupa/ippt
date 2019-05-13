@@ -29,13 +29,18 @@
       onSignIn() {
         if (this.email && this.password.length > 5) {
           firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(user => {
-            this.success('Ви успішно ввійшли')
-
-            if (user.uid == '3IVvDzvpurMJA1iwt9Y8igdoYyJ2') {
-              // Доробити
-              this.$router.replace('/manager')
+            if (user.email == 'admin@gmail.com') {
+              this.$router.replace('/admin')
             } else {
-              this.$router.replace('/client')
+              firebase.database().ref(`managers/${user.uid}`).once('value', snap => {
+                if (snap.val()) {
+                  this.$router.replace('/manager')
+                } else {
+                  this.$router.replace('/client')
+                }
+
+                this.success('Ви успішно ввійшли')
+              })
             }
           },
           error => {
