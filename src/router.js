@@ -15,6 +15,7 @@ Vue.use(VueRouter)
 
 export default new VueRouter({
   routes: [
+    { path: '*', redirect: '/' },
     { path: '/', component: Authorization },
     { path: '/sign-in', component: SignIn },
     { path: '/sign-up', component: SignUp },
