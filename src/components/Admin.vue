@@ -1,9 +1,11 @@
 <template>
   <div>
-    <h4>Менеджери:</h4>
-    <div v-for="(manager, index) in managers" :key="index">
-      <p>{{ manager.email }}</p>
-      <div class="admin-btn">Понизити</div>
+    <div class="container">
+      <h4>Менеджери:</h4>
+      <div v-for="(manager, index) in managers" :key="index">
+        <p>{{ manager.email }}</p>
+        <div @click="onDeleteManager" class="admin-btn">Понизити до клієнта</div>
+      </div>
     </div>
     <Manager />
   </div>
@@ -35,6 +37,13 @@
 </script>
 
 <style lang="sass" scoped>
+  p
+    display: inline
+
   .admin-btn
     display: inline
+    margin-left: 15px
+    padding: 10px 12px
+    background: lightblue
+    cursor: pointer
 </style>
