@@ -39,23 +39,20 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   const currentUser = firebase.auth().currentUser
+  // const requiresAuth = to.matched.some(record => record.meta.requiresAuth)
 
   if (currentUser) {
     firebase.database().ref(`managers/${currentUser.uid}`).once('value', snap => {
-      alert(snap.val())
-    }).then(() => {
-      this.success('Cool')
-    },
-    error => {
-      alert(error.message)
-    })
-  }
-  const requiresAuth = to.matched.some(record => record.meta.requiresAuth)
+      let isManager = snap.val()
 
-  if (requiresAuth && !currentUser) {
-    next('/')
+      if (isManager) {
+        next('/manager')
+      } else {
+        next('/client')
+      }
+    })
   } else {
-    next()
+    next('/')
   }
 })
 
