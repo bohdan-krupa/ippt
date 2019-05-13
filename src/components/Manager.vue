@@ -1,17 +1,21 @@
 <template>
-  <div class="container">
-    <h4>Клієнти:</h4>
-    <router-link
-      v-for="(client, index) in clients"
-      :to="'/manager/' + client.id"
-      :key="index"
-      class="sign-btn"
-    >{{ client.email }}</router-link>
+  <div>
+    <div class="container">
+      <h4>Клієнти:</h4>
+      <router-link
+        v-for="(client, index) in clients"
+        :to="'/manager/' + client.id"
+        :key="index"
+        class="sign-btn"
+      >{{ client.email }}</router-link>
+    </div>
+    <SignOut />
   </div>
 </template>
 
 <script>
   import firebase from 'firebase'
+  import SignOut from './SignOut.vue'
   import toast from '../toast.js'
 
   export default {
@@ -37,6 +41,9 @@
         this.clients = currentData
         this.success('Готово')
       })
+    },
+    components: {
+      SignOut
     },
     mixins: [toast]
   }
