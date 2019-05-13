@@ -7,7 +7,7 @@
       <input v-model="year" type="number" min="1980">
       <p>* Марка:</p>
       <input v-model="mark" type="text">
-      <div @click="onDone" class="sign-btn">Звернутись за ремонтом</div>
+      <div @click="onAskForRepair" class="sign-btn">Звернутись за ремонтом</div>
     </div>
     <BackBtn />
   </div>
@@ -38,7 +38,7 @@
       }
     },
     methods: {
-      onDone() {
+      onAskForRepair() {
         if (this.country && this.year && this.mark) {
           this.success('Loading...')
 
