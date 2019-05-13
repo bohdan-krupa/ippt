@@ -21,24 +21,42 @@ const router = new VueRouter({
     { path: '/', component: Authorization },
     { path: '/sign-in', component: SignIn },
     { path: '/sign-up', component: SignUp },
-    { path: '/client', component: Client },
-    { path: '/client/new-repair', component: NewRepair },
-    { path: '/client/my-repairs', component: MyRepairs },
-    { path: '/manager', component: Manager },
-    { path: '/manager/:clientId', component: ManagerForUser },
-    { path: '/set-repair-type/:clientId/:repairId', component: SetRepairType },
-    { path: '/start-repair/:clientId/:repairId', component: StartRepair }
+    { path: '/client', component: Client, meta: { toClient: true } },
+    { path: '/client/new-repair', component: NewRepair, meta: { toClient: true } },
+    { path: '/client/my-repairs', component: MyRepairs, meta: { toClient: true } },
+    { path: '/manager', component: Manager, meta: { toManager: true } },
+    { path: '/manager/:clientId', component: ManagerForUser, meta: { toManager: true } },
+    { path: '/set-repair-type/:clientId/:repairId', component: SetRepairType, meta: { toManager: true } },
+    { path: '/start-repair/:clientId/:repairId', component: StartRepair, meta: { toManager: true } }
   ]
 })
 
 router.beforeEach((to, from, next) => {
   const currentUser = firebase.auth().currentUser
+  const toClient = to.matched.some(record => record.meta.toClient)
+  const toManager = to.matched.some(record => record.meta.toManager)
 
-  if (!currentUser) {
-    next('/')
-  } else {
-    next()
+  if (currentUser) {
+      firebase.database().ref(`managers/${currentUser.uid}`).once('value', snap => {
+      const isManager = snap.val()
+      console.log(isManager, toManager)
+
+      if ((isManager && toManager) || (!isManager && toClient)) {
+        next()
+      } else if (isManager && toClient) {
+        next('/manager')
+      } else if (!isManager && toManager) {
+        next('/client')
+      }
+    })
   }
+
+
+  // if (!currentUser) {
+  //   next('/')
+  // } else {
+  //   next()
+  // }
 })
 
 export default router
