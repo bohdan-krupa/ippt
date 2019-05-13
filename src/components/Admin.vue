@@ -2,7 +2,8 @@
   <div>
     <h4>Менеджери:</h4>
     <div v-for="(manager, index) in managers" :key="index">
-      <p>{{ manager.email }}</p><span>Видалити</span>
+      <p>{{ manager.email }}</p>
+      <div class="admin-btn">Понизити</div>
     </div>
     <Manager />
   </div>
@@ -32,3 +33,8 @@
     }
   }
 </script>
+
+<style lang="sass" scoped>
+  .admin-btn
+    display: inline
+</style>
