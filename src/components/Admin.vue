@@ -2,7 +2,7 @@
   <div>
     <h4>Менеджери:</h4>
     <div v-for="(manager, index) in managers" :key="index">
-      <p>{{ manager.email }}</p>
+      <p>{{ manager.email }}</p><span>Видалити</span>
     </div>
     <Manager />
   </div>
@@ -21,7 +21,7 @@
     created() {
       firebase.database().ref('managers').once('value', snap => {
         const managers = snap.val()
-        console.log(managers)
+
         for (let managerId in managers) {
           this.managers.push({ email: managers[managerId], id: managerId })
         }
