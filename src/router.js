@@ -41,7 +41,7 @@ router.beforeEach((to, from, next) => {
   const currentUser = firebase.auth().currentUser
   alert("sf")
   if (currentUser) {
-    firebase.database().ref(`managers/${currentUser.uid}`).once('value', snap => {
+    firebase.database().ref(`managers/`).once('value', snap => {
       alert(snap.val())
     }).then(() => {
       this.success('Cool')
