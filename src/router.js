@@ -44,7 +44,7 @@ router.beforeEach((to, from, next) => {
   if (requiresAuth && !currentUser) {
     next('/')
   } else {
-    return
+    next()
   }
 })
 
