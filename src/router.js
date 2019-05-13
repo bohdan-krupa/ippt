@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import firebase from 'firebase'
+
 import Authorization from '../src/components/Authorization.vue'
 import SignIn from '../src/components/SignIn.vue'
 import SignUp from '../src/components/SignUp.vue'
@@ -13,13 +15,19 @@ import StartRepair from '../src/components/StartRepair.vue'
 
 Vue.use(VueRouter)
 
-export default new VueRouter({
+const router = new VueRouter({
   routes: [
     { path: '*', redirect: '/' },
     { path: '/', component: Authorization },
     { path: '/sign-in', component: SignIn },
     { path: '/sign-up', component: SignUp },
-    { path: '/client', component: Client },
+    {
+      path: '/client',
+      component: Client,
+      meta: {
+        requiresAuth: true
+      }
+    },
     { path: '/client/new-repair', component: NewRepair },
     { path: '/client/my-repairs', component: MyRepairs },
     { path: '/manager', component: Manager },
@@ -28,3 +36,16 @@ export default new VueRouter({
     { path: '/start-repair/:clientId/:repairId', component: StartRepair }
   ]
 })
+
+router.beforeEach((to, from, next) => {
+  const currentUser = firebase.auth().currentUser
+  const requiresAuth = to.matched.some(record => record.meta.requiresAuth)
+
+  if (requiresAuth && !currentUser) {
+    next('/')
+  } else {
+    return
+  }
+})
+
+export default router
