@@ -5,25 +5,6 @@
   </div>
 </template>
 
-<script>
-  import firebase from 'firebase'
-
-  export default {
-    created() {
-      const currentUser = firebase.auth().currentUser
-
-      firebase.database().ref(`managers/${currentUser.uid}`).once('value', snap => {
-        console.log(snap.val())
-      }).then(() => {
-        this.success('Cool')
-      },
-      error => {
-        alert(error.message)
-      })
-    }
-  }
-</script>
-
 <style lang="sass">
   a
     display: block
