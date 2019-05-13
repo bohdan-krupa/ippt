@@ -2,10 +2,13 @@
   <div>
     <div class="container">
       <h4>Менеджери:</h4>
-      <div v-for="(manager, index) in managers" :key="index">
-        <p>{{ manager.email }}</p>
-        <div @click="onDeleteManager(manager.id)" class="admin-btn">Понизити до клієнта</div>
+      <div v-if="isManagers">
+        <div v-for="(manager, index) in managers" :key="index">
+          <p>{{ manager.email }}</p>
+          <div @click="onDeleteManager(manager.id)" class="admin-btn">Понизити до клієнта</div>
+        </div>
       </div>
+      <div v-else>Немає менеджерів, назначте когось!</div>
     </div>
     <Manager />
   </div>
@@ -18,15 +21,20 @@
   export default {
     data() {
       return {
-        managers: []
+        managers: [],
+        isManagers: true
       }
     },
     created() {
-      firebase.database().ref('managers').once('value', snap => {
+      firebase.database().ref('managers').on('value', snap => {
         const managers = snap.val()
 
-        for (let managerId in managers) {
-          this.managers.push({ email: managers[managerId], id: managerId })
+        if (!managers) {
+          this.isManagers = false
+        } else {
+          for (let managerId in managers) {
+            this.managers.push({ email: managers[managerId], id: managerId })
+          }
         }
       })
     },
