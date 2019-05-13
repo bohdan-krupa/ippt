@@ -21,13 +21,7 @@ const router = new VueRouter({
     { path: '/', component: Authorization },
     { path: '/sign-in', component: SignIn },
     { path: '/sign-up', component: SignUp },
-    {
-      path: '/client',
-      component: Client,
-      meta: {
-        requiresAuth: true
-      }
-    },
+    { path: '/client', component: Client },
     { path: '/client/new-repair', component: NewRepair },
     { path: '/client/my-repairs', component: MyRepairs },
     { path: '/manager', component: Manager },
@@ -39,7 +33,6 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   const currentUser = firebase.auth().currentUser
-  // const requiresAuth = to.matched.some(record => record.meta.requiresAuth)
 
   if (!currentUser) {
     next('/')
