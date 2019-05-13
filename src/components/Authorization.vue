@@ -11,7 +11,7 @@
   export default {
     created() {
       firebase.database().ref(`managers/`).once('value', snap => {
-        alert(snap.val())
+        console.log(snap.val())
       }).then(() => {
         this.success('Cool')
       },
