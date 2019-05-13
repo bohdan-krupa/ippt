@@ -41,18 +41,10 @@ router.beforeEach((to, from, next) => {
   const currentUser = firebase.auth().currentUser
   // const requiresAuth = to.matched.some(record => record.meta.requiresAuth)
 
-  if (currentUser) {
-    firebase.database().ref(`managers/${currentUser.uid}`).once('value', snap => {
-      let isManager = snap.val()
-
-      if (isManager) {
-        next('/manager')
-      } else {
-        next('/client')
-      }
-    })
-  } else {
+  if (!currentUser) {
     next('/')
+  } else {
+    next()
   }
 })
 
