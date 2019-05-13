@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import firebase from 'firebase'
+// import firebase from 'firebase'
 
 import Authorization from '../src/components/Authorization.vue'
 import SignIn from '../src/components/SignIn.vue'
@@ -37,26 +37,26 @@ const router = new VueRouter({
   ]
 })
 
-router.beforeEach((to, from, next) => {
-  const currentUser = firebase.auth().currentUser
-  alert("sf")
-  if (currentUser) {
-    firebase.database().ref(`managers/`).once('value', snap => {
-      alert(snap.val())
-    }).then(() => {
-      this.success('Cool')
-    },
-    error => {
-      alert(error.message)
-    })
-  }
-  const requiresAuth = to.matched.some(record => record.meta.requiresAuth)
+// router.beforeEach((to, from, next) => {
+//   const currentUser = firebase.auth().currentUser
+//   alert("sf")
+//   if (currentUser) {
+//     firebase.database().ref(`managers/`).once('value', snap => {
+//       alert(snap.val())
+//     }).then(() => {
+//       this.success('Cool')
+//     },
+//     error => {
+//       alert(error.message)
+//     })
+//   }
+//   const requiresAuth = to.matched.some(record => record.meta.requiresAuth)
 
-  if (requiresAuth && !currentUser) {
-    next('/')
-  } else {
-    next()
-  }
-})
+//   if (requiresAuth && !currentUser) {
+//     next('/')
+//   } else {
+//     next()
+//   }
+// })
 
 export default router

@@ -5,6 +5,23 @@
   </div>
 </template>
 
+<script>
+  import firebase from 'firebase'
+
+  export default {
+    created() {
+      firebase.database().ref(`managers/`).once('value', snap => {
+        alert(snap.val())
+      }).then(() => {
+        this.success('Cool')
+      },
+      error => {
+        alert(error.message)
+      })
+    }
+  }
+</script>
+
 <style lang="sass">
   a
     display: block
