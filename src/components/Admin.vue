@@ -4,7 +4,7 @@
       <h4>Менеджери:</h4>
       <div v-for="(manager, index) in managers" :key="index">
         <p>{{ manager.email }}</p>
-        <div @click="onDeleteManager" class="admin-btn">Понизити до клієнта</div>
+        <div @click="onDeleteManager(manager.id)" class="admin-btn">Понизити до клієнта</div>
       </div>
     </div>
     <Manager />
@@ -29,6 +29,13 @@
           this.managers.push({ email: managers[managerId], id: managerId })
         }
       })
+    },
+    methods: {
+      onDeleteManager(id) {
+        firebase.database().ref(`managers/${id}`).remove().then(() => {
+          this.success('Ви')
+        })
+      }
     },
     components: {
       Manager
