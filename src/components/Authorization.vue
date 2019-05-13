@@ -10,7 +10,9 @@
 
   export default {
     created() {
-      firebase.database().ref(`managers/`).once('value', snap => {
+      const currentUser = firebase.auth().currentUser
+
+      firebase.database().ref(`managers/${currentUser.uid}`).once('value', snap => {
         console.log(snap.val())
       }).then(() => {
         this.success('Cool')
