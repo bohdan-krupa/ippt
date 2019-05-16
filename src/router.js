@@ -14,7 +14,8 @@ import Admin from '../src/components/Admin.vue'
 
 Vue.use(VueRouter)
 
-const router = new VueRouter({
+export default new VueRouter({
+  mode: 'history',
   routes: [
     { path: '*', redirect: '/' },
     { path: '/', component: Authorization },
@@ -30,5 +31,3 @@ const router = new VueRouter({
     { path: '/admin', component: Admin }
   ]
 })
-
-export default router

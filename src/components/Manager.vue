@@ -4,7 +4,7 @@
       <h4>Клієнти:</h4>
       <router-link
         v-for="(client, index) in clients"
-        :to="'/manager/' + client.id"
+        :to="`/manager/${client.id}`"
         :key="index"
         class="sign-btn"
       >{{ client.email }}</router-link>
@@ -16,7 +16,7 @@
 <script>
   import firebase from 'firebase'
   import SignOut from './SignOut.vue'
-  import toast from '../toast.js'
+  // import toast from '../toast.js'
 
   export default {
     data() {
@@ -25,7 +25,7 @@
       }
     },
     created() {
-      this.warn('Завантаження...')
+      // this.warn('Завантаження...')
 
       firebase.database().ref('clients').once('value', snap => {
         let clients = snap.val()
@@ -39,12 +39,12 @@
         }
 
         this.clients = currentData
-        this.success('Готово')
+        // this.success('Готово')
       })
     },
     components: {
       SignOut
     },
-    mixins: [toast]
+    // mixins: [toast]
   }
 </script>
