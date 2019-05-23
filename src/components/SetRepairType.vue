@@ -60,7 +60,7 @@
           let dbRef = `clients/${this.clientId}/repaires/${this.repairId}`
           
           firebase.database().ref(dbRef).update({
-            status:     'Очікування виду ремонту',
+            status:     'Очікування згоди',
             repairType: this.repairType
           }).then(() => {
             this.$router.replace('/manager/' + this.clientId)

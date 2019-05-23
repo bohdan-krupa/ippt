@@ -16,9 +16,9 @@
   #right-bottom-btn
     position: fixed
     bottom: 0
-    width: 140px
+    width: 100px
     height: 40px
-    margin: 0 0 26px 20px
+    margin: 0 0 20px 15px
     background-color: lightblue
     text-align: center
     line-height: 40px

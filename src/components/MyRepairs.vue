@@ -2,7 +2,8 @@
   <div>
     <div class="container">
       <h3>Мої ремонти:</h3>
-      <div v-for="(repair, index) in repaires" :key="index">
+      <p v-if="noRepair">У вас ще немає ремонтів</p>
+      <div v-else v-for="(repair, index) in repaires" :key="index">
         <hr />
         <p>Статус: {{ repair.status }}</p>
         <h4>Вид станка:</h4>
@@ -43,8 +44,8 @@
     data() {
       return {
         client: null,
-        email:    null,
-        repaires: []
+        repaires: [],
+        noRepair: false
       }
     },
     created() {
@@ -55,14 +56,17 @@
         firebase.database().ref(`clients/${this.client.uid}`).on('value', snap => {
           let data = snap.val()
 
-          this.email = data.email
-          this.repaires = []
+          if (data) {
+            this.repaires = []
 
-          for (let repairId in data.repaires) {
-            this.repaires.push({
-              repairId,
-              ...data.repaires[repairId]
-            })
+            for (let repairId in data.repaires) {
+              this.repaires.push({
+                repairId,
+                ...data.repaires[repairId]
+              })
+            }
+          } else {
+            this.noRepair = true
           }
         })
       

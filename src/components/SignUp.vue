@@ -2,18 +2,10 @@
   <div>
       <div class="container">
         <div v-if="!loading">
-          <form>
-            <p>Email</p>
-            <input v-model="email" :class="{ green: isGood.email }" type="email">
-            <p>Password</p>
-            <input v-model="password" :class="{ green: isGood.password }" type="password">
-            <p>Password once again</p>
-            <input v-model="password2" :class="{ green: isGood.password2 }" type="password">
-            <div @click="onSignUp" class="sign-btn">Sign up</div>
-          </form>
+          <Form @onGetData="onSignUp" btn-text="Зареєструватись" />
         </div>
         <div v-if="loading">
-          <h3>Loading...</h3>
+          <h3>Завантаження...</h3>
         </div>
       </div>
       <BackBtn />
@@ -22,61 +14,34 @@
 
 <script>
   import firebase from 'firebase'
+  import Form from './Form.vue'
   import BackBtn from './BackBtn'
   import toast from '../toast.js'
 
   export default {
     data() {
       return {
-        loading:   false,
-        email:     null,
-        password:  null,
-        password2: null,
-        isGood: {
-          email:     false,
-          password:  false,
-          password2: false
-        }
-      }
-    },
-    watch: {
-      email: function(val) {
-        let regExp = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/
-        this.isGood.email = regExp.test(val) ? 1 : 0 
-      },
-      password: function(val) {
-        let regExp = /^(?=.*[0-9]+.*)(?=.*[a-zA-Z]+.*)[0-9a-zA-Z]{6,}$/
-        this.isGood.password = regExp.test(val) ? 1 : 0
-        this.isGood.password2 = this.isGood.password && val == this.password2 ? 1 : 0
-      },
-      password2: function(val) {
-        this.isGood.password2 = this.isGood.password && this.password == val ? 1 : 0
+        loading: false
       }
     },
     methods: {
-      onSignUp() {
-        if (this.isGood.email && this.isGood.password && this.isGood.password2) {
-          this.loading = true
+      onSignUp(data) {
+        this.loading = true
 
-          firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(() => {
-            this.success('You are registered')
-            this.$router.replace('/')
-          },
-          error => {
-            this.error(error.message)
-            this.loading = false
-          })
-        }
+        firebase.auth().createUserWithEmailAndPassword(data.email, data.password).then(() => {
+          this.success('Ви зареєструвались')
+          this.$router.replace('/')
+        },
+        error => {
+          this.error(error.message)
+          this.loading = false
+        })
       }
     },
     components: {
+      Form,
       BackBtn
     },
     mixins: [toast]
   }
 </script>
-
-<style lang="sass">  
-  .green
-    border-color: green
-</style>
