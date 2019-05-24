@@ -21,6 +21,8 @@
 </template>
 
 <script>
+  // Компонент для встановлення виду ремонту менеджером
+
   import firebase from 'firebase'
   import BackBtn from './BackBtn.vue'
 

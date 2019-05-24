@@ -11,6 +11,8 @@
 </template>
 
 <script>
+  // Компонент для початку ремонту менеджером
+
   import firebase from 'firebase'
   import BackBtn from './BackBtn.vue'
 

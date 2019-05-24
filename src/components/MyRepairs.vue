@@ -37,6 +37,8 @@
 </template>
 
 <script>
+  // Компонент для відображення всіх ремонтів клієнта
+
   import firebase from 'firebase'
   import BackBtn from './BackBtn.vue'
 

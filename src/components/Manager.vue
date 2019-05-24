@@ -14,9 +14,11 @@
 </template>
 
 <script>
+  // Компонент для менеджерської панелі та обробки всіх дій менеджера
+  
+
   import firebase from 'firebase'
   import SignOut from './SignOut.vue'
-  // import toast from '../toast.js'
 
   export default {
     data() {
@@ -25,8 +27,6 @@
       }
     },
     created() {
-      // this.warn('Завантаження...')
-
       firebase.database().ref('clients').once('value', snap => {
         let clients = snap.val()
         let currentData = []
@@ -39,12 +39,10 @@
         }
 
         this.clients = currentData
-        // this.success('Готово')
       })
     },
     components: {
       SignOut
-    },
-    // mixins: [toast]
+    }
   }
 </script>

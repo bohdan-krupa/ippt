@@ -3,6 +3,8 @@
 </template>
 
 <script>
+  // Компонент кнопки "Назад"
+
   export default {
     methods: {
       onBack() {

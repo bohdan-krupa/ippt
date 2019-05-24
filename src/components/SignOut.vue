@@ -3,6 +3,8 @@
 </template>
 
 <script>
+  // Компонент для виходу
+
   import firebase from 'firebase'
 
   export default {

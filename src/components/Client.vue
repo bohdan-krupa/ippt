@@ -10,6 +10,8 @@
 </template>
 
 <script>
+  // Компонент для головної сторінки клієнта
+
   import SignOut from './SignOut.vue'
   import toast from '../toast.js'
 

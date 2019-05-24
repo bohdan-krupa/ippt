@@ -1,3 +1,5 @@
+// Головний файл для ініціалізації Firebase і Vue
+
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'

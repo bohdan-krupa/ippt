@@ -1,3 +1,5 @@
+// Правка компонента для спливаючих сповіщень
+
 import Vue from 'vue'
 
 export default {

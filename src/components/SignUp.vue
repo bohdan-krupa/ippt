@@ -13,6 +13,8 @@
 </template>
 
 <script>
+  // Компонент для реєстрації клієнта
+
   import firebase from 'firebase'
   import Form from './Form.vue'
   import BackBtn from './BackBtn'

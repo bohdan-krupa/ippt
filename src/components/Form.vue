@@ -11,6 +11,8 @@
 </template>
 
 <script>
+  // Компонент для роботи з полями і обробки їхньої інформації
+
   export default {
     data() {
       return {

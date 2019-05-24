@@ -14,6 +14,8 @@
 </template>
 
 <script>
+  // Компонент для входу
+
   import firebase from 'firebase'
   import BackBtn from './BackBtn.vue'
   import toast from '../toast.js'

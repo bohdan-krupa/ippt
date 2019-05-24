@@ -17,6 +17,8 @@
 </template>
 
 <script>
+  // Компонент для адмінської панелі та обробки всіх дій адміна
+
   import firebase from 'firebase'
   import Form from './Form.vue'
   import Manager from './Manager.vue'
@@ -40,7 +42,6 @@
       }
     },
     created() {
-      console.log(firebase.auth().currentUser.email)
       firebase.database().ref('managers').on('value', snap => {
         const managers = snap.val()
 

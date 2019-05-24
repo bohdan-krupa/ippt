@@ -1,3 +1,5 @@
+// Файл відповідає за систему роутингу
+
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Authorization from '../src/components/Authorization.vue'

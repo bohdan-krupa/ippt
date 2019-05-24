@@ -52,6 +52,8 @@
 </template>
 
 <script>
+  // Компонент для обробки дій над певним користувачем менеджером
+
   import firebase from 'firebase'
   import BackBtn from './BackBtn.vue'
 

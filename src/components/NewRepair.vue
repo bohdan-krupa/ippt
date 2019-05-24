@@ -14,6 +14,8 @@
 </template>
 
 <script>
+  // Компонент для створення нового ремонту клієнтом
+
   import firebase from 'firebase'
   import BackBtn from './BackBtn.vue'
   import toast from '../toast.js'
@@ -69,7 +71,7 @@
       pushRepair(machineType) {
         firebase.database().ref('clients/' + this.uId + '/repaires').push().set({
           machineType,
-          status: 'Waiting for the repair type'
+          status: 'Очікування виду ремонту'
         }
         ).then(() => {
           this.$router.replace('/client')
